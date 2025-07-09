@@ -1,0 +1,6 @@
+[submodule "backend/src/library/dxlib"]
+	path = backend/src/library/dxlib
+	url = https://github.com/donnyhardyanto/dxlib.git
+[submodule "backend/src/library/dxlib_module"]
+	path = backend/src/library/dxlib_module
+	url = https://github.com/donnyhardyanto/dxlib_module.git

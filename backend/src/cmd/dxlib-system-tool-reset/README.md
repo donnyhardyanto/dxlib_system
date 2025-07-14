@@ -1,0 +1,1 @@
+# tool-pgn-partner-reset

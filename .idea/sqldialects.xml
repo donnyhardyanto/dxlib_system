@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_auditlog.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_config.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.arrears_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.construction_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.general.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.master_data.init-data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.master_data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.partner_management.cms_dashboard.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.partner_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.push_notification.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.report.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.task_management.base.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.task_management.init-data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.task_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.task_management.task_code_trigger.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.upload_data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.user_management.init-data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql/partner_taskdispatcher.user_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_auditlog.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_config.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.arrears_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.construction_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.general.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.master_data.init-data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.master_data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.partner_management.cms_dashboard.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.partner_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.push_notification.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.report.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.task_management.base.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.task_management.init-data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.task_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.task_management.task_code_trigger.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.upload_data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.user_management.init-data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql/partner_taskdispatcher.user_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_auditlog.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_config.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.arrears_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.construction_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.general.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.master_data.init-data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.master_data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.partner_management.cms_dashboard.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.partner_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.push_notification.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.report.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.task_management.base.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.task_management.init-data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.task_management.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.task_management.task_code_trigger.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.upload_data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.user_management.init-data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/partner_taskdispatcher.user_management.sql" dialect="PostgreSQL" />
+  </component>
+</project>

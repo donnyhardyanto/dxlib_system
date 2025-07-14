@@ -1,0 +1,67 @@
+erDiagram
+    user ||--o{ user_password: has
+    user ||--o{ user_organization_membership: has
+    user ||--o{ user_role_membership: has
+    organization ||--o{ user_organization_membership: has
+    organization ||--o{ organization_role: has
+    role ||--o{ organization_role: has
+    role ||--o{ role_privilege: has
+    role ||--o{ user_role_membership: has
+    privilege ||--o{ role_privilege: has
+    privilege ||--o{ menu_item: "referenced by"
+    task ||--o{ sub_task: has
+    task }|--|| customer: "belongs to"
+    task }|--|| task_type: "has type"
+    sub_task }|--|| sub_task_type: "has type"
+    sub_task ||--o{ sub_task_report: has
+    sub_task ||--o{ sub_task_history_item: has
+    sub_task_report ||--o{ sub_task_report_file: has
+    sub_task_report_file }|--|| sub_task_report_file_group: "belongs to"
+    customer }o--|| rs_customer_sector: "belongs to sector"
+    customer }o--|| area: "belongs to area"
+    customer }o--|| location: "belongs to location"
+
+    user {
+        bigint id PK
+        varchar loginid
+        varchar email
+        varchar fullname
+        varchar status
+        boolean is_deleted
+    }
+
+    organization {
+        bigint id PK
+        varchar code
+        varchar name
+        varchar type
+        varchar status
+        boolean is_deleted
+    }
+
+    task {
+        bigint id PK
+        varchar code
+        bigint task_type_id FK
+        varchar status
+        bigint customer_id FK
+        boolean is_deleted
+    }
+
+    sub_task {
+        bigint id PK
+        bigint task_id FK
+        bigint sub_task_type_id FK
+        varchar code
+        varchar status
+        boolean is_deleted
+    }
+
+    customer {
+        bigint id PK
+        varchar registration_number
+        varchar customer_number
+        varchar fullname
+        varchar status
+        boolean is_deleted
+    }

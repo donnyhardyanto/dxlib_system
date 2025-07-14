@@ -1,0 +1,9 @@
+go 1.24.5
+
+use (
+	./backend/src/library/dxlib
+	./backend/src/library/dxlib_module
+	./backend/src/library/dxlib-system-common
+		./backend/src/cmd/dxlib-system-tool-reset
+    	./backend/src/cmd/dxlib-system-service-api-webadmin
+)

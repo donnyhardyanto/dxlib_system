@@ -3,7 +3,7 @@ module github.com/donnyhardyanto/dxlib-system/common
 go 1.24.5
 
 require (
-	github.com/donnyhardyanto/dxlib v1.71.0
+	github.com/donnyhardyanto/dxlib v1.72.0
 	github.com/donnyhardyanto/dxlib_module v1.49.0
 	github.com/go-ldap/ldap/v3 v3.4.11
 	github.com/johnfercher/maroto/v2 v2.3.1

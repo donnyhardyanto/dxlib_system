@@ -1,11 +1,11 @@
 package infrastructure
 
 import (
+	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/base"
 	"github.com/donnyhardyanto/dxlib/app"
 	"github.com/donnyhardyanto/dxlib/configuration"
 	"github.com/donnyhardyanto/dxlib/utils"
 	"github.com/donnyhardyanto/dxlib/utils/os"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/base"
 )
 
 func DefineConfiguration() {
@@ -100,35 +100,23 @@ func DefineConfiguration() {
 			"connection_options":  app.App.InitVault.GetStringOrDefault("DB_CONFIG_CONNECTION_OPTIONS", ""),
 			"must_connected":      true,
 			"is_connect_at_start": true,
-			"create_script_files": []string{createScriptFileFolder + "/partner_config.sql"},
+			"create_script_files": []string{createScriptFileFolder + "/db_configuration.sql"},
 		},
-		"task-dispatcher": map[string]any{
-			"nameid":              "task-dispatcher",
-			"database_type":       app.App.InitVault.GetStringOrDefault("DB_TASK_DISPATCHER_DATABASE_TYPE", ""),
-			"address":             app.App.InitVault.GetStringOrDefault("DB_TASK_DISPATCHER_ADDRESS", ""),
-			"user_name":           app.App.InitVault.GetStringOrDefault("DB_TASK_DISPATCHER_USER_NAME", ""),
-			"user_password":       app.App.InitVault.GetStringOrDefault("DB_TASK_DISPATCHER_USER_PASSWORD", ""),
-			"database_name":       app.App.InitVault.GetStringOrDefault("DB_TASK_DISPATCHER_DATABASE_NAME", ""),
-			"connection_options":  app.App.InitVault.GetStringOrDefault("DB_TASK_DISPATCHER_CONNECTION_OPTIONS", ""),
+		"db_base": map[string]any{
+			"nameid":              "db_base",
+			"database_type":       app.App.InitVault.GetStringOrDefault("DB_BASE_DATABASE_TYPE", ""),
+			"address":             app.App.InitVault.GetStringOrDefault("DB_BASE_ADDRESS", ""),
+			"user_name":           app.App.InitVault.GetStringOrDefault("DB_BASE_USER_NAME", ""),
+			"user_password":       app.App.InitVault.GetStringOrDefault("DB_BASE_USER_PASSWORD", ""),
+			"database_name":       app.App.InitVault.GetStringOrDefault("DB_BASE_DATABASE_NAME", ""),
+			"connection_options":  app.App.InitVault.GetStringOrDefault("DB_BASE_CONNECTION_OPTIONS", ""),
 			"must_connected":      true,
 			"is_connect_at_start": true,
 			"create_script_files": []string{
-				createScriptFileFolder + "/partner_taskdispatcher.general.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.user_management.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.push_notification.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.master_data.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.master_data.init-data.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.master_data.location.init-data.combined.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.task_management.base.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.partner_management.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.task_management.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.construction_management.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.partner_management.cms_dashboard.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.user_management.init-data.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.task_management.init-data.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.report.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.arrears_management.sql",
-				createScriptFileFolder + "/partner_taskdispatcher.upload_data.sql",
+				createScriptFileFolder + "/db_base.general.sql",
+				createScriptFileFolder + "/db_base.user_management.sql",
+				createScriptFileFolder + "/db_base.push_notification.sql",
+				createScriptFileFolder + "/db_base.user_management.init-data.sql",
 			},
 		},
 		"auditlog": map[string]any{
@@ -141,7 +129,7 @@ func DefineConfiguration() {
 			"connection_options":  app.App.InitVault.GetStringOrDefault("DB_AUDITLOG_CONNECTION_OPTIONS", ""),
 			"must_connected":      true,
 			"is_connect_at_start": true,
-			"create_script_files": []string{createScriptFileFolder + "/partner_auditlog.sql"},
+			"create_script_files": []string{createScriptFileFolder + "/db_auditlog.sql"},
 		},
 	}, []string{
 		"system.user_name", "system.user_password",

@@ -2,16 +2,16 @@ package seed
 
 import (
 	"database/sql"
+	"github.com/donnyhardyanto/dxlib-system/common"
+	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/base"
+	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/configuration_settings"
+	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/master_data"
 	"github.com/donnyhardyanto/dxlib/database"
 	"github.com/donnyhardyanto/dxlib/log"
 	"github.com/donnyhardyanto/dxlib/utils"
 	"github.com/donnyhardyanto/dxlib/utils/json"
 	"github.com/donnyhardyanto/dxlib_module/module/general"
 	"github.com/donnyhardyanto/dxlib_module/module/user_management"
-	pgn_partner_common "github.com/donnyhardyanto/dxlib-system/common"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/base"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/configuration_settings"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/master_data"
 	"sync"
 )
 
@@ -620,7 +620,7 @@ func Seed() (err error) {
 			return err
 		}
 
-		roleSORAdminSalesId, err := pgn_partner_common.PartnerInstance.RoleCreate(&log.Log, utils.JSON{
+		roleSORAdminSalesId, err := common.PartnerInstance.RoleCreate(&log.Log, utils.JSON{
 			"organization_types": []string{"OWNER"},
 			"nameid":             "SOR/ADMIN_SALES_" + areaCode,
 			"name":               "SOR/Admin Sales " + areaName,
@@ -645,7 +645,7 @@ func Seed() (err error) {
 		_ = user_management.ModuleUserManagement.RolePrivilegeSWgMustInsert(wgMain, &log.Log, roleSORAdminSalesId, "CUSTOMER.LIST")
 		_ = user_management.ModuleUserManagement.RolePrivilegeSWgMustInsert(wgMain, &log.Log, roleSORAdminSalesId, "CUSTOMER.READ")
 
-		roleCGPPMId, err := pgn_partner_common.PartnerInstance.RoleCreate(&log.Log, utils.JSON{
+		roleCGPPMId, err := common.PartnerInstance.RoleCreate(&log.Log, utils.JSON{
 			"organization_types": []string{"OWNER"},
 			"nameid":             "CGP/PM_" + areaCode,
 			"name":               "CGP/PM " + areaName,
@@ -824,7 +824,7 @@ func Seed() (err error) {
 		_ = user_management.ModuleUserManagement.RolePrivilegeSWgMustInsert(wgMain, &log.Log, roleCGPPMId, "ORGANIZATION.READ_BY_UTAG")
 		_ = user_management.ModuleUserManagement.RolePrivilegeSWgMustInsert(wgMain, &log.Log, roleCGPPMId, "USER_ROLE_MEMBERSHIP.LIST")
 
-		roleCGPSiteCoordinatorId, err := pgn_partner_common.PartnerInstance.RoleCreate(&log.Log, utils.JSON{
+		roleCGPSiteCoordinatorId, err := common.PartnerInstance.RoleCreate(&log.Log, utils.JSON{
 			"organization_types": []string{"OWNER"},
 			"nameid":             "CGP/SITE_COORDINATOR_" + areaCode,
 			"name":               "CGP/Site Coordinator " + areaName,
@@ -1003,7 +1003,7 @@ func Seed() (err error) {
 		_ = user_management.ModuleUserManagement.RolePrivilegeSWgMustInsert(wgMain, &log.Log, roleCGPSiteCoordinatorId, "ORGANIZATION.READ_BY_UTAG")
 		_ = user_management.ModuleUserManagement.RolePrivilegeSWgMustInsert(wgMain, &log.Log, roleCGPSiteCoordinatorId, "USER_ROLE_MEMBERSHIP.LIST")
 
-		roleCGPTraceabilityId, err := pgn_partner_common.PartnerInstance.RoleCreate(&log.Log, utils.JSON{
+		roleCGPTraceabilityId, err := common.PartnerInstance.RoleCreate(&log.Log, utils.JSON{
 			"organization_types": []string{"OWNER"},
 			"nameid":             "CGP/TRACEABILITY_" + areaCode,
 			"name":               "CGP/Traceability " + areaName,
@@ -1206,7 +1206,7 @@ func Seed() (err error) {
 		_ = user_management.ModuleUserManagement.RolePrivilegeSWgMustInsert(wgMain, &log.Log, roleCGPTraceabilityId, "USER_ROLE_MEMBERSHIP.CREATE")
 		_ = user_management.ModuleUserManagement.RolePrivilegeSWgMustInsert(wgMain, &log.Log, roleCGPTraceabilityId, "USER_ROLE_MEMBERSHIP.DELETE")
 
-		roleCGPAdminConstructionId, err := pgn_partner_common.PartnerInstance.RoleCreate(&log.Log, utils.JSON{
+		roleCGPAdminConstructionId, err := common.PartnerInstance.RoleCreate(&log.Log, utils.JSON{
 			"organization_types": []string{"OWNER"},
 			"nameid":             "CGP/ADMIN_CONSTRUCTION_" + areaCode,
 			"name":               "CGP/Admin Coordinator " + areaName,

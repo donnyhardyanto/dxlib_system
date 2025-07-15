@@ -424,7 +424,7 @@ func SMSSend(recipient string, templateData map[string]any, templateBody string,
 	}
 
 	responseInJSON := utils.JSON{}
-	err = json.Unmarshal(body, responseInJSON)
+	err = json.Unmarshal(body, &responseInJSON)
 	if err != nil {
 		return errors.Wrap(err, fmt.Sprintf("error in json.Unmarshal response=%v", responseInJSON))
 	}

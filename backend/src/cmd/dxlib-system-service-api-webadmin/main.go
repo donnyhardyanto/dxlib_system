@@ -1,21 +1,19 @@
 package main
 
 import (
-	moduleInstance "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance"
-	moduleInstanceV1ArrearsManagement "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/arrears_management"
-	moduleInstanceV1AuditLog "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/audit_log"
-	moduleInstanceV1ConstructionManagement "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/construction_management"
-	moduleInstanceV1ExternalSystem "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/external_system"
-	moduleInstanceV1General "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/general"
-	moduleInstanceV1MasterData "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/master_data"
-	moduleInstanceV1PartnerManagement "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/partner_management"
-	moduleInstanceV1PushNotification "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/push_notification"
-	moduleInstanceV1RelyOn "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/relyon"
-	moduleInstanceV1Self "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/self"
-	moduleInstanceV1TaskManagement "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/task_management"
-	moduleInstanceV1UploadData "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/upload_data"
-	moduleInstanceV1UserManagement "aretaamany.com/pgn/service-pgn-partner-api-webadmin/module_instance/v1/user_management"
+	moduleInstance "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance"
+	moduleInstanceV1ArrearsManagement "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/arrears_management"
+	moduleInstanceV1AuditLog "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/audit_log"
+	moduleInstanceV1ConstructionManagement "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/construction_management"
+	moduleInstanceV1ExternalSystem "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/external_system"
+	moduleInstanceV1General "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/general"
+	moduleInstanceV1MasterData "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/master_data"
+	moduleInstanceV1PartnerManagement "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/partner_management"
+	moduleInstanceV1PushNotification "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/push_notification"
+	moduleInstanceV1Self "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/self"
+	moduleInstanceV1UserManagement "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/user_management"
 
+	"github.com/donnyhardyanto/dxlib-system/common/infrastructure"
 	"github.com/donnyhardyanto/dxlib/api"
 	"github.com/donnyhardyanto/dxlib/app"
 	"github.com/donnyhardyanto/dxlib/configuration"
@@ -25,7 +23,6 @@ import (
 	"github.com/donnyhardyanto/dxlib/utils/os"
 	"github.com/donnyhardyanto/dxlib/vault"
 	"github.com/donnyhardyanto/dxlib_module/module/oam"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure"
 )
 
 var isAPISpec = false
@@ -122,7 +119,7 @@ func main() {
 		"__VAULT__",
 		os.GetEnvDefaultValue("VAULT_PATH", "dev-vault-path"),
 	)
-	app.Set("service-pgn-partner-api-webadmin",
+	app.Set("dxlib-system-service-api-webadmin",
 		"PGN Partner API WebAdmin",
 		"PGN Partner 2 API WebAmin",
 		true,

@@ -4,6 +4,8 @@ use (
 	./backend/src/library/dxlib
 	./backend/src/library/dxlib_module
 	./backend/src/library/dxlib-system-common
-		./backend/src/cmd/dxlib-system-tool-reset
-    	./backend/src/cmd/dxlib-system-service-api-webadmin
+	./backend/src/cmd/dxlib-system-tool-reset
+    ./backend/src/cmd/dxlib-system-service-api-webadmin
+    ./backend/src/cmd/dxlib-system-service-push-notification
+    ./backend/src/cmd/dxlib-system-service-api-runner
 )

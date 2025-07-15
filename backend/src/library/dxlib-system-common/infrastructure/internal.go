@@ -1,6 +1,9 @@
 package infrastructure
 
 import (
+	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/base"
+	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/configuration_settings"
+	user_management_handler "github.com/donnyhardyanto/dxlib-system/common/infrastructure/user_management/handler"
 	"github.com/donnyhardyanto/dxlib/configuration"
 	"github.com/donnyhardyanto/dxlib/endpoint_rate_limiter"
 	"github.com/donnyhardyanto/dxlib/redis"
@@ -13,15 +16,6 @@ import (
 	"github.com/donnyhardyanto/dxlib_module/module/self"
 	"github.com/donnyhardyanto/dxlib_module/module/user_management"
 	"github.com/pkg/errors"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/arrears_management"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/base"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/configuration_settings"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/construction_management"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/master_data"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/partner_management"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/task_management"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/upload_data"
-	user_management_handler "github.com/donnyhardyanto/dxlib-system/common/infrastructure/user_management/handler"
 	"time"
 )
 
@@ -174,9 +168,6 @@ func DoOnDefineSetVariables() (err error) {
 	configuration_settings.ModuleConfigurationSettings.Init(base.DatabaseNameIdConfig)
 	external_system.ModuleExternalSystem.Init(base.DatabaseNameIdConfig)
 
-	master_data.ModuleMasterData.Init(base.DatabaseNameIdTaskDispatcher)
-	construction_management.ModuleConstructionManagement.Init(base.DatabaseNameIdTaskDispatcher)
-
 	self.ModuleSelf.Init(base.DatabaseNameIdTaskDispatcher)
 
 	general.ModuleGeneral.Init(base.DatabaseNameIdTaskDispatcher)
@@ -185,11 +176,6 @@ func DoOnDefineSetVariables() (err error) {
 	user_management.ModuleUserManagement.SessionRedis = redis.Manager.Redises["session"]
 	user_management.ModuleUserManagement.PreKeyRedis = redis.Manager.Redises["prekey"]
 
-	partner_management.ModulePartnerManagement.Init(base.DatabaseNameIdTaskDispatcher)
-
 	push_notification.ModulePushNotification.FCM.Init(base.DatabaseNameIdTaskDispatcher)
-	task_management.ModuleTaskManagement.Init(base.DatabaseNameIdTaskDispatcher)
-	arrears_management.ModuleArrearsManagement.Init(base.DatabaseNameIdTaskDispatcher)
-	upload_data.ModuleUploadData.Init(base.DatabaseNameIdTaskDispatcher)
 	return nil
 }

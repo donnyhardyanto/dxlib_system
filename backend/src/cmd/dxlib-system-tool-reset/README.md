@@ -1,1 +1,1 @@
-# tool-pgn-partner-reset
+# dxlib-system-tool-reset

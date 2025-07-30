@@ -6,7 +6,7 @@ ARG TARGETPLATFORM
 ARG DEBUG=false
 
 # Set service name based on architecture
-ENV SERVICE_NAME=tool-pgn-partner-reset-linux-${TARGETARCH}
+ENV SERVICE_NAME=dxlib-system-tool-reset-linux-${TARGETARCH}
 
 # Install Delve with architecture-specific settings
 RUN if [ "$TARGETARCH" = "arm64" ]; then \

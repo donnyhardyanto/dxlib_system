@@ -1,1 +1,1 @@
-# service-pgn-partner-api-webadmin
+# dxlib-system-service-api-webadmin

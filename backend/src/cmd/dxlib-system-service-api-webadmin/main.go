@@ -120,10 +120,10 @@ func main() {
 		os.GetEnvDefaultValue("VAULT_PATH", "dev-vault-path"),
 	)
 	app.Set("dxlib-system-service-api-webadmin",
-		"PGN Partner API WebAdmin",
-		"PGN Partner 2 API WebAmin",
+		"DXLib System API WebAdmin",
+		"DXLib System 2 API WebAmin",
 		true,
-		"SERVICE_PGN_PARTNER_API_WEBADMIN_DEBUG",
+		"DXLIB_SYSTEM_SERVICE_API_WEBADMIN_DEBUG",
 		"abc",
 	)
 	app.App.Version = VersionNumber + "+" + utils.GetBuildTime()

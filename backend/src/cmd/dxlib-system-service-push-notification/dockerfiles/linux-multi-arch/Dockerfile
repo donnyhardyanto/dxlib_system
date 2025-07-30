@@ -6,7 +6,7 @@ ARG TARGETPLATFORM
 ARG DEBUG=false
 
 # Set service name based on architecture
-ENV SERVICE_NAME=service-pgn-partner-push-notification-linux-${TARGETARCH}
+ENV SERVICE_NAME=dxlib-system-service-push-notification-linux-${TARGETARCH}
 
 # Install Delve with architecture-specific settings
 RUN if [ "$TARGETARCH" = "arm64" ]; then \

@@ -47,10 +47,10 @@ func main() {
 		os.GetEnvDefaultValue("VAULT_PATH", "dev-vault-path"),
 	)
 	app.Set("dxlib-system-service-push-notification",
-		"PGN Partner Push Notification",
-		"PGN Partner Push Notification",
+		"DXLib System Push Notification",
+		"DXLib System Push Notification",
 		true,
-		"SERVICE_PGN_PARTNER_PUSH_NOTIFICATION_DEBUG",
+		"DXLIB_SYSTEM_SERVICE_PUSH_NOTIFICATION_DEBUG",
 		"abc",
 	)
 	app.App.OnDefineConfiguration = doOnDefineConfiguration

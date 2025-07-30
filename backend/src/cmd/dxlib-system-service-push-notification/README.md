@@ -1,1 +1,1 @@
-# service-pgn-partner-push-notification
+# dxlib-system-service-push-notification

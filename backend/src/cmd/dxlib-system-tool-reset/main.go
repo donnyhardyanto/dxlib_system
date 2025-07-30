@@ -54,8 +54,8 @@ func doOnDefineConfiguration() (err error) {
 	configStorageDbAuditLog["must_connected"] = false
 
 	configuration.Manager.NewIfNotExistConfiguration("storage", "storage.json", "json", false, false, map[string]any{
-		"postgres": map[string]any{
-			"nameid":              "postgres",
+		"system": map[string]any{
+			"nameid":              "system",
 			"database_type":       "postgres",
 			"address":             app.App.InitVault.GetStringOrDefault("DB_POSTGRES_ADDRESS", ""),
 			"user_name":           app.App.InitVault.GetStringOrDefault("DB_POSTGRES_USER_NAME", ""),
@@ -64,7 +64,7 @@ func doOnDefineConfiguration() (err error) {
 			"connection_options":  "sslmode=disable",
 			"must_connected":      false,
 			"is_connect_at_start": false,
-		}}, []string{"postgres.user_name", "postgres.user_password"})
+		}}, []string{"system.user_name", "system.user_password"})
 
 	configRedis := *configuration.Manager.Configurations["redis"].Data
 	for k := range configRedis {
@@ -155,33 +155,32 @@ func doOnAfterConfigurationStartAll() (err error) {
 	}
 	log.Log.Warn("Executing wipe... START")
 
-	dbPartnerAuditLog := database.Manager.Databases["auditlog"]
+	dbAuditLog := database.Manager.Databases["auditlog"]
 	dbDbBase := database.Manager.Databases["db_base"]
-	dbPartnerConfig := database.Manager.Databases["config"]
+	dbConfig := database.Manager.Databases["config"]
 
 	if deleteAndCreateDb {
-		dbPostgres := database.Manager.Databases["postgres"]
-		_ = dbPostgres.Connect()
-		_ = dropDatabase(dbPostgres.Connection, dbDbBase.DatabaseName)
-		_ = dropDatabase(dbPostgres.Connection, dbPartnerAuditLog.DatabaseName)
-		_ = dropDatabase(dbPostgres.Connection, dbPartnerConfig.DatabaseName)
+		dbSystem := database.Manager.Databases["system"]
+		_ = dbSystem.Connect()
+		_ = dropDatabase(dbSystem.Connection, dbDbBase.DatabaseName)
+		_ = dropDatabase(dbSystem.Connection, dbAuditLog.DatabaseName)
+		_ = dropDatabase(dbSystem.Connection, dbConfig.DatabaseName)
 
-		_ = createDatabase(dbPostgres.Connection, dbPartnerConfig.DatabaseName)
-		_ = createDatabase(dbPostgres.Connection, dbPartnerAuditLog.DatabaseName)
-		_ = createDatabase(dbPostgres.Connection, dbDbBase.DatabaseName)
+		_ = createDatabase(dbSystem.Connection, dbConfig.DatabaseName)
+		_ = createDatabase(dbSystem.Connection, dbAuditLog.DatabaseName)
+		_ = createDatabase(dbSystem.Connection, dbDbBase.DatabaseName)
 	}
 
-	_, err = dbPartnerConfig.ExecuteCreateScripts()
+	_, err = dbConfig.ExecuteCreateScripts()
 	if err != nil {
-		log.Log.Errorf(err, "Failed to connect/execute to database %s: %s", dbPartnerConfig.DatabaseName, err.Error())
+		log.Log.Errorf(err, "Failed to connect/execute to database %s: %s", dbConfig.DatabaseName, err.Error())
 		return err
 	}
 
-	_, err = dbPartnerAuditLog.ExecuteCreateScripts()
+	_, err = dbAuditLog.ExecuteCreateScripts()
 	if err != nil {
-		log.Log.Errorf(err, "Failed to connect/execute to database %s: %s", dbPartnerAuditLog.DatabaseName, err.Error())
+		log.Log.Errorf(err, "Failed to connect/execute to database %s: %s", dbAuditLog.DatabaseName, err.Error())
 		return err
-
 	}
 
 	_, err = dbDbBase.ExecuteCreateScripts()
@@ -213,15 +212,15 @@ func main() {
 	log.SetFormatText()
 	app.App.InitVault = vault.NewHashiCorpVault(
 		utilsOs.GetEnvDefaultValue("VAULT_ADDRESS", "http://127.0.0.1:8200/"),
-		utilsOs.GetEnvDefaultValue("VAULT_TOKEN", " dev-vault-token"),
+		utilsOs.GetEnvDefaultValue("VAULT_TOKEN", ""),
 		"__VAULT__",
-		utilsOs.GetEnvDefaultValue("VAULT_PATH", "kv/data/pgn-partner-dev"),
+		utilsOs.GetEnvDefaultValue("VAULT_PATH", ""),
 	)
-	app.Set("pgn-partner-reset",
-		"PGN Partner Reset CLI",
-		"PGN Partner Reset CLI",
+	app.Set("tool-reset",
+		"Tool Reset CLI",
+		"Tool Reset CLI",
 		false,
-		"pgn-partner-reset-debug",
+		"tool-reset-debug",
 		"abc",
 	)
 	app.App.OnDefineConfiguration = doOnDefineConfiguration

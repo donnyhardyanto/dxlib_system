@@ -132,8 +132,8 @@ func DefineConfiguration() {
 			"create_script_files": []string{createScriptFileFolder + "/db_auditlog.sql"},
 		},
 	}, []string{
-		"system.user_name", "system.user_password",
-		"task-dispatcher.user_name", "task-dispatcher.user_password",
+		"config.user_name", "config.user_password",
+		"db_base.user_name", "db_base.user_password",
 		"auditlog.user_name", "auditlog.user_password",
 	})
 

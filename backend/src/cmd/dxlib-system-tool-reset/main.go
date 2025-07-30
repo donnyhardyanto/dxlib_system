@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/donnyhardyanto/dxlib-system/tool-reset/seed"
 	"bufio"
 	"fmt"
+	"github.com/donnyhardyanto/dxlib-system/common/infrastructure"
+	"github.com/donnyhardyanto/dxlib-system/tool-reset/seed"
 	"github.com/donnyhardyanto/dxlib/app"
 	"github.com/donnyhardyanto/dxlib/configuration"
 	"github.com/donnyhardyanto/dxlib/database"
@@ -13,7 +14,6 @@ import (
 	"github.com/donnyhardyanto/dxlib/vault"
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure"
 	"os"
 	"strings"
 )
@@ -29,12 +29,12 @@ var (
 )
 
 func doOnDefineConfiguration() (err error) {
-	t1 := utilsOs.GetEnvDefaultValue("IS_PGN_PARTNER_RESET_DELETE_AND_CREATE_DB", "false")
+	t1 := utilsOs.GetEnvDefaultValue("IS_RESET_DELETE_AND_CREATE_DB", "false")
 	if t1 == "true" {
 		deleteAndCreateDb = true
 	}
 
-	t2 := utilsOs.GetEnvDefaultValueAsInt("PGN_PARTNER_RESET_BYPASS_CONFIRMATION", 0)
+	t2 := utilsOs.GetEnvDefaultValueAsInt("RESET_BYPASS_CONFIRMATION", 0)
 	if t2 == 1 {
 		bypassConfirmation = true
 	}
@@ -45,9 +45,9 @@ func doOnDefineConfiguration() (err error) {
 	configStorageDbConfig["is_connect_at_start"] = false
 	configStorageDbConfig["must_connected"] = false
 
-	configStorageDbTaskDispatcher := configStorage["task-dispatcher"].(utils.JSON)
-	configStorageDbTaskDispatcher["is_connect_at_start"] = false
-	configStorageDbTaskDispatcher["must_connected"] = false
+	configStorageDbBase := configStorage["db_base"].(utils.JSON)
+	configStorageDbBase["is_connect_at_start"] = false
+	configStorageDbBase["must_connected"] = false
 
 	configStorageDbAuditLog := configStorage["auditlog"].(utils.JSON)
 	configStorageDbAuditLog["is_connect_at_start"] = false
@@ -156,19 +156,19 @@ func doOnAfterConfigurationStartAll() (err error) {
 	log.Log.Warn("Executing wipe... START")
 
 	dbPartnerAuditLog := database.Manager.Databases["auditlog"]
-	dbPartnerTaskDispatcher := database.Manager.Databases["task-dispatcher"]
+	dbDbBase := database.Manager.Databases["db_base"]
 	dbPartnerConfig := database.Manager.Databases["config"]
 
 	if deleteAndCreateDb {
 		dbPostgres := database.Manager.Databases["postgres"]
 		_ = dbPostgres.Connect()
-		_ = dropDatabase(dbPostgres.Connection, dbPartnerTaskDispatcher.DatabaseName)
+		_ = dropDatabase(dbPostgres.Connection, dbDbBase.DatabaseName)
 		_ = dropDatabase(dbPostgres.Connection, dbPartnerAuditLog.DatabaseName)
 		_ = dropDatabase(dbPostgres.Connection, dbPartnerConfig.DatabaseName)
 
 		_ = createDatabase(dbPostgres.Connection, dbPartnerConfig.DatabaseName)
 		_ = createDatabase(dbPostgres.Connection, dbPartnerAuditLog.DatabaseName)
-		_ = createDatabase(dbPostgres.Connection, dbPartnerTaskDispatcher.DatabaseName)
+		_ = createDatabase(dbPostgres.Connection, dbDbBase.DatabaseName)
 	}
 
 	_, err = dbPartnerConfig.ExecuteCreateScripts()
@@ -184,9 +184,9 @@ func doOnAfterConfigurationStartAll() (err error) {
 
 	}
 
-	_, err = dbPartnerTaskDispatcher.ExecuteCreateScripts()
+	_, err = dbDbBase.ExecuteCreateScripts()
 	if err != nil {
-		log.Log.Errorf(err, "Failed to connect/execute to database %s: %s", dbPartnerTaskDispatcher.DatabaseName, err.Error())
+		log.Log.Errorf(err, "Failed to connect/execute to database %s: %s", dbDbBase.DatabaseName, err.Error())
 		return err
 
 	}

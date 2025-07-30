@@ -168,14 +168,14 @@ func DoOnDefineSetVariables() (err error) {
 	configuration_settings.ModuleConfigurationSettings.Init(base.DatabaseNameIdConfig)
 	external_system.ModuleExternalSystem.Init(base.DatabaseNameIdConfig)
 
-	self.ModuleSelf.Init(base.DatabaseNameIdTaskDispatcher)
+	self.ModuleSelf.Init(base.DatabaseNameIdDbBase)
 
-	general.ModuleGeneral.Init(base.DatabaseNameIdTaskDispatcher)
+	general.ModuleGeneral.Init(base.DatabaseNameIdDbBase)
 
-	user_management.ModuleUserManagement.Init(base.DatabaseNameIdTaskDispatcher)
+	user_management.ModuleUserManagement.Init(base.DatabaseNameIdDbBase)
 	user_management.ModuleUserManagement.SessionRedis = redis.Manager.Redises["session"]
 	user_management.ModuleUserManagement.PreKeyRedis = redis.Manager.Redises["prekey"]
 
-	push_notification.ModulePushNotification.FCM.Init(base.DatabaseNameIdTaskDispatcher)
+	push_notification.ModulePushNotification.FCM.Init(base.DatabaseNameIdDbBase)
 	return nil
 }

@@ -25,7 +25,7 @@ func init() {
 
 	PartnerInstance = Partner{
 		DatabaseNameIdAuditLog:       base.DatabaseNameIdAuditLog,
-		DatabaseNameIdTaskDispatcher: base.DatabaseNameIdTaskDispatcher,
+		DatabaseNameIdTaskDispatcher: base.DatabaseNameIdDbBase,
 		DatabaseNameIdConfig:         base.DatabaseNameIdConfig,
 		UserManagement:               &user_management.ModuleUserManagement,
 	}

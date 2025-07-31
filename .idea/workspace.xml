@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AIAssistantCustomInstructionsStorage">
+    <option name="instructions">
+      <map>
+        <entry key="AIAssistant.VCS.GenerateCommitMessage">
+          <value>
+            <AIAssistantStoredInstruction>
+              <option name="actionId" value="AIAssistant.VCS.GenerateCommitMessage" />
+              <option name="content" value="List all changes one by one with verbose descriptions as a list. Add AI Deducted reason why changes needed, and prefix the reason with: AI Deducted:&#10;" />
+            </AIAssistantStoredInstruction>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3d32252b-d9ef-4ccd-996d-37c719a7560d" name="Changes" comment="**Replace `partner_management` with `user_management` modules across user and role APIs**&#10;&#10;### Changes:&#10;1. **Removed `partner_management` import:**&#10;   - Deleted references to `dxlib-system/common/infrastructure/partner_management`.&#10;&#10;2. **Replaced `partner_management` with `user_management` in User Role Membership API:**&#10;   - Updated `partner_management.ModulePartnerManagement.UserRoleMembership.RequestPagingList` to `user_management.ModuleUserManagement.UserRoleMembership.RequestPagingList`.&#10;&#10;3. **Replaced `partner_management` with `user_management` in Role API:**&#10;   - Updated multiple endpoints to use `user_management` module methods:&#10;     - **`RequestPagingList`**: Updated from `partner_management.ModulePartnerManagement.Role` to `user_management.ModuleUserManagement.Role`.&#10;     - **`RequestListDownload`**: Updated similarly.&#10;     - **`RequestCreate`**: Switched from `partner_management_handler.RoleCreate` to `user_management.ModuleUserManagement.Role.RequestCreate`.&#10;     - **`RequestRead` and `RequestReadByNameId`**: Updated to use `user_management` methods.&#10;     - **`RoleEdit` and `RoleDelete`**: Updated endpoints to use methods from `user_management`.&#10;&#10;4. **Removed unused Role API fields:**&#10;   - Fields `area_code` and `task_type_id` deleted for role creation and editing requests.&#10;&#10;### AI Deducted:&#10;- Updates align the APIs with the newer `user_management` module, reflecting deprecation of `partner_management`.&#10;- Removal of unused fields simplifies request payloads, reducing unnecessary data exchange.&#10;&#10;### Overall Impact:&#10;- Refactored code to ensure uniformity with the updated `user_management` module.&#10;- Improved maintainability by removing obsolete imports and unused attributes.">
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/lib.go" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/lib.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.general.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.general.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.user_management.init-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.user_management.init-data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.user_management.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.user_management.sql" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="repository" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/backend/src/library/dxlib" value="main" />
+        <entry key="$PROJECT_DIR$/backend/src/library/dxlib_module" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GoVcsConfiguration">
+    <option name="GO_FMT" value="false" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file:///usr/local/go/src/runtime/panic.go" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2zcVTlVmkn8Lgeos2QVAtj52S7f" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.(local) tool-reset.executor": "Debug",
+    "Go Build.tool-reset.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.GoLinterPluginOnboarding": "true",
+    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/donnyhardyanto/Works/Personal/dxlib-system/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app" />
+      <recent name="$PROJECT_DIR$/backend/build/local" />
+      <recent name="$PROJECT_DIR$/backend/build/local/dxlib-system-tool-reset" />
+      <recent name="$PROJECT_DIR$/backend/src/cmd" />
+      <recent name="$PROJECT_DIR$/backend/src/library" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/backend" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="GoApplicationRunConfiguration" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Go Build.(local) service-api-webadmin">
+    <configuration name="(local) service-api-webadmin" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="dxlib-system" />
+      <working_directory value="$PROJECT_DIR$/backend/build/local/dxlib-system-service-api-webadmin/" />
+      <go_parameters value="-o $PROJECT_DIR$/backend/build/local/dxlib-system-service-api-webadmin/tool-reset" />
+      <envs>
+        <env name="BUILD_ENV_FILE" value="$PROJECT_DIR$/backend/build/local/build.env" />
+      </envs>
+      <kind value="FILE" />
+      <package value="github.com/donnyhardyanto/dxlib-system/tool-reset" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="(local) tool-reset" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="dxlib-system" />
+      <working_directory value="$PROJECT_DIR$/backend/build/local/dxlib-system-tool-reset/" />
+      <go_parameters value="-o $PROJECT_DIR$/backend/build/local/dxlib-system-tool-reset/tool-reset" />
+      <envs>
+        <env name="BUILD_ENV_FILE" value="$PROJECT_DIR$/backend/build/local/build.env" />
+      </envs>
+      <kind value="FILE" />
+      <package value="github.com/donnyhardyanto/dxlib-system/tool-reset" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/main.go" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Build.(local) tool-reset" />
+      <item itemvalue="Go Build.(local) service-api-webadmin" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-3b128438d3f6-07d2d2d66b1e-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-251.27812.54" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-GO-251.27812.54" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3d32252b-d9ef-4ccd-996d-37c719a7560d" name="Changes" comment="" />
+      <created>1752030357411</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1752030357411</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Refactor redundant code, enhance configuration management, and clean unused functionality&#10;&#10;### Changes:&#10;1. **Updated IDE Module Configuration:**&#10;   - Added exclusion folders for `.dart_tool`, `.pub`, and `build` directories in the module configuration.&#10;   - **AI Deducted:** Prevents indexing unnecessary build artifacts by the IDE.&#10;&#10;2. **Refactored Environment Configuration in `main.go`:**&#10;   - Renamed environment variables for clarity: `IS_PGN_PARTNER_RESET_DELETE_AND_CREATE_DB` to `IS_RESET_DELETE_AND_CREATE_DB` and `PGN_PARTNER_RESET_BYPASS_CONFIRMATION` to `RESET_BYPASS_CONFIRMATION`.&#10;   - Updated handling for database connectivity configurations, including renaming &quot;task-dispatcher&quot; references to &quot;db_base.&quot;&#10;   - **AI Deducted:** Ensures clearer, database-agnostic naming conventions for better maintainability and alignment with the new database structure.&#10;&#10;3. **Removed Redundant Legacy Code in `handler_self.go`:**&#10;   - Removed partnership-related code for `OrganizationExecutor`, `OrganizationSupervisor`, `FieldExecutor`, and `FieldSupervisor` components in `handler_self.go`.&#10;   - **AI Deducted:** Redundant operations and unused dependencies significantly impacted application performance and complexity.&#10;&#10;4. **Deleted Unused General Settings Handlers:**&#10;   - Removed `GeneralSettingsTaskConstructionUpdate` and `GeneralSettingsTaskConstructionRead` handlers.&#10;   - **AI Deducted:** Unused endpoints contribute no utility; removing them reduces potential maintenance overhead.&#10;&#10;5. **Streamlined Internal Module Initializations:**&#10;   - Updated initializations across several modules (e.g., Self, General, User Management, Push Notifications) to use `db_base` instead of `task-dispatcher`.&#10;   - **AI Deducted:** Aligns all module configurations with the new unified database structure for consistency.&#10;&#10;6. **Simplified Database References in the Base Module:**&#10;   - Removed multiple hardcoded settings/constants related to `task-dispatcher`, `field executor`, and `field supervisor`.&#10;   - **AI Deducted:** Eliminates unused configurations bound to outdated functionality.&#10;&#10;7. **Removed Obsolete Functions in `seed.go`:**&#10;   - Deleted `PopulateDataPartnerTaskDispatcherMasterDataLocation` and redundant privilege initialization for field executor roles.&#10;   - **AI Deducted:** Cleaning up obsolete role-based privileges prevents potential misuses.&#10;&#10;8. **Introduced Local Environment Configuration for Reset Tool:**&#10;   - Added `key.env` containing Vault configuration for secure token management.&#10;   - Added `run.env` to configure runtime environment (e.g., Vault address, bypass flag, New Relic).&#10;   - **AI Deducted:** Supports a more secure and manageable configuration process.&#10;&#10;### Overall Impact:&#10;- Improved performance by removing unused code and redundant operations.&#10;- Simplified database configurations and naming conventions for better clarity.&#10;- Enhanced modularity and maintainability.">
+      <option name="closed" value="true" />
+      <created>1753864021910</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1753864021911</updated>
+    </task>
+    <task id="LOCAL-00002" summary="### Commit Message:&#10;&#10;**Refactor PGN Partner to DXLib Migration and Cleanup Unused Code**&#10;&#10;### Changes:&#10;1. **Standardized Service Names Across Dockerfiles:**&#10;   - Updated `SERVICE_NAME` environment variable in multi-arch Dockerfiles to use `dxlib` naming convention.&#10;   - **AI Deducted:** Aligning service names with the new DXLib naming scheme ensures consistency and clarity.&#10;&#10;2. **Renamed Environment Variables in `main.go`:**&#10;   - Replaced debug environment variables (e.g., `SERVICE_PGN_PARTNER_PUSH_NOTIFICATION_DEBUG`) with `DXLIB_SYSTEM_SERVICE` equivalents.&#10;   - **AI Deducted:** Improved readability and adherence to the standard naming convention.&#10;&#10;3. **Updated Documentation (README):**&#10;   - Replaced service names in README files to use `dxlib` naming (e.g., `dxlib-system-service-api-webadmin`).&#10;   - **AI Deducted:** Documentation changes ensure alignment with new service names and prevent confusion.&#10;&#10;4. **Removed All Legacy RelyOn Endpoint Handlers:**&#10;   - Deleted handlers and endpoints related to RelyOn integration in `api.go`.&#10;   - **AI Deducted:** Obsolete functionality was removed to reduce maintenance workload and improve codebase hygiene.&#10;&#10;5. **Removed Redundant Role and Privilege Initialization in `seed.go`:**&#10;   - Cleaned up unnecessary privilege settings and outdated email template configurations.&#10;   - **AI Deducted:** Legacy privileges for removed features and modules were no longer relevant.&#10;&#10;6. **Streamlined Code by Removing Unused Variables:**&#10;   - Eliminated unnecessary local variables (e.g., `organizationIdOwner`) and unused inserts in the `seed.go`.&#10;   - **AI Deducted:** Reduced technical debt and improved overall code readability.&#10;&#10;7. **General Miscellaneous Cleanup:**&#10;   - Renamed interfaces and app strings in `main.go` to match DXLib standards.&#10;   - Simplified seed logic and configuration processes.&#10;&#10;### Overall Impact:&#10;- Migrated naming conventions from `PGN Partner` to `DXLib`.&#10;- Improved readability, maintainability, and alignment with project standards.&#10;- Streamlined functionality by removing unused or outdated code.">
+      <option name="closed" value="true" />
+      <created>1753917223529</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1753917223529</updated>
+    </task>
+    <task id="LOCAL-00003" summary="### Commit Message:&#10;&#10;**Refactor Database and Configuration Handling for DXLib System Tool Reset**&#10;&#10;### Changes:&#10;1. **Renamed Configurations from &quot;postgres&quot; to &quot;system&quot;:**&#10;   - Updated configuration structure to replace `postgres` references with `system` in `main.go`.&#10;   - Adjusted sensitive keys to reference `system.user_name` and `system.user_password`.&#10;   - **AI Deducted:** Aligns naming conventions with the updated DXLib system standards for database context.&#10;&#10;2. **Refactored Database Connection Manager:**&#10;   - Replaced `dbPostgres` usage with `dbSystem`. &#10;   - Updated database initialization and reset logic to utilize the new `system` database context.&#10;   - **AI Deducted:** Provides consistency in database management and reflects the migration to new structural naming.&#10;&#10;3. **Updated Vault Configuration:**&#10;   - Changed default Vault variables to remove hardcoded tokens and paths for `VAULT_TOKEN` and `VAULT_PATH`.&#10;   - **AI Deducted:** Reinforces security by removing hardcoded values and enabling dynamic handling.&#10;&#10;4. **Renamed CLI Descriptions and Debug Flags:**&#10;   - Altered CLI application identifier and debug field from `pgn-partner-reset` to `tool-reset`.&#10;   - Updated program descriptions to match the new naming format (`Tool Reset CLI`).&#10;   - **AI Deducted:** Adapts CLI functionality to the new DXLib branding, ensuring seamless user transition.&#10;&#10;5. **Simplified Log Warnings and Error Outputs:**&#10;   - Adjusted warning messages and error handling to use the updated database context (e.g., `dbAuditLog` instead of `dbPartnerAuditLog`).&#10;   - **AI Deducted:** Improves log clarity and aligns terminology with refactored database references.&#10;&#10;### Overall Impact:&#10;- Improved maintainability by consolidating and updating database and configuration references.&#10;- Enhanced security through removal of hardcoded sensitive parameters.&#10;- Streamlined CLI application descriptions and logs to reflect the new DXLib branding.">
+      <option name="closed" value="true" />
+      <created>1753917259231</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1753917259231</updated>
+    </task>
+    <task id="LOCAL-00004" summary="**Refactor DXLib System Naming Conventions and Cleanup IDE Configurations**&#10;&#10;### Changes:&#10;1. **Updated System Name in SQL Property Table:**&#10;   - Changed the `SYSTEM-NAME` property from `PGN Partner Task Dispatcher` to `DXLib System Task Dispatcher` in `partner_taskdispatcher.general.sql`.&#10;   - **AI Deducted:** Aligns system naming with the rebranding to DXLib standards, ensuring consistency across configurations.&#10;&#10;2. **Cleaned Up IDE SQL Dialect Mappings:**&#10;   - Removed unused dialect mappings for `.linux-multi-arch` SQL files from `.idea/sqldialects.xml`.&#10;   - **AI Deducted:** Reduces clutter in IDE configuration by removing references to outdated SQL file paths, improving project maintainability.&#10;&#10;### Overall Impact:&#10;- Standardizes naming conventions for better alignment with the DXLib branding.&#10;- Improves project organization by cleaning up obsolete IDE configurations.">
+      <option name="closed" value="true" />
+      <created>1753919744626</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1753919744626</updated>
+    </task>
+    <task id="LOCAL-00005" summary="**Remove obsolete SQL scripts for audit logging, configuration, and legacy management tasks**&#10;&#10;### Changes:&#10;1. **Deleted `partner_auditlog.sql`:**&#10;   - Removed outdated audit logging schema and tables (e.g., `audit_log.error_log`, `audit_log.user_activity_log`).&#10;   - **AI Deducted:** These tables are no longer in use; their removal helps in database simplification and reduces storage overhead.&#10;&#10;2. **Deleted `partner_config.sql`:**&#10;   - Removed configuration schema and tables (`configuration.external_system`, `settings.general_template`, `settings.email_template`, `settings.sms_template`).&#10;   - **AI Deducted:** Unused configuration tables were likely replaced by more modern or consolidated solutions.&#10;&#10;3. **Deleted arrears management (`partner_taskdispatcher.arrears_management.sql`):**&#10;   - Dropped schemas, tables, and comments related to arrears task processing and uploads.&#10;   - **AI Deducted:** Legacy arrears management workflows are deprecated, making the functionality redundant.&#10;&#10;4. **Deleted construction management (`partner_taskdispatcher.construction_management.sql`):**&#10;   - Removed schemas, appliance-related tables (e.g., `gas_appliance`, `meter_appliance_type`), and inserts for initial data.&#10;   - **AI Deducted:** Construction management features are no longer required, likely due to shifting business requirements.&#10;&#10;5. **Deleted `partner_taskdispatcher.general.sql`:**&#10;   - Removed `general.property` and `general.announcement` tables, along with pre-populated configuration data.&#10;   - **AI Deducted:** Centralized configuration management has likely been migrated to a different system.&#10;&#10;6. **Deleted redundant master data initialization (`partner_taskdispatcher.master_data.init-data.sql`):**&#10;   - Dropped insertion scripts for operational area, customer references, and global lookup data.&#10;   - **AI Deducted:** Data initialization is either automated or included in a new streamlined system.&#10;&#10;### Overall Impact:&#10;- Simplified database structure by removing unused scripts and schemas.&#10;- Reduced maintenance burden and potential confusion from legacy SQL artifacts.&#10;- Improved focus on active and relevant system features.">
+      <option name="closed" value="true" />
+      <created>1753919984573</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1753919984573</updated>
+    </task>
+    <task id="LOCAL-00006" summary="**Remove obsolete `arrears_management` and `construction_management` modules**&#10;&#10;- **Deleted `arrears_management` package**: Removed all endpoints and methods for managing arrears, including `TaskPiutangCreate`, data validation functionality, and related middleware.&#10;  - **AI Deducted:** The module is no longer in use and its functionality is likely deprecated, simplifying the codebase.&#10;&#10;- **Deleted `construction_management` package**: Removed functionalities related to gas appliances, meter appliance types, and tapping saddle appliances, including endpoint definitions, request handlers, and middleware.&#10;  - **AI Deducted:** This module has been retired due to shifting business needs, and its removal reduces maintenance overhead.&#10;&#10;**Overall Impact:**&#10;- Simplified codebase by removing unused modules and endpoints.&#10;- Enhanced maintainability and clarity by focusing on active and relevant components.">
+      <option name="closed" value="true" />
+      <created>1753920568900</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1753920568900</updated>
+    </task>
+    <task id="LOCAL-00007" summary="**Replace `partner_management` with `user_management` modules across user and role APIs**&#10;&#10;### Changes:&#10;1. **Removed `partner_management` import:**&#10;   - Deleted references to `dxlib-system/common/infrastructure/partner_management`.&#10;&#10;2. **Replaced `partner_management` with `user_management` in User Role Membership API:**&#10;   - Updated `partner_management.ModulePartnerManagement.UserRoleMembership.RequestPagingList` to `user_management.ModuleUserManagement.UserRoleMembership.RequestPagingList`.&#10;&#10;3. **Replaced `partner_management` with `user_management` in Role API:**&#10;   - Updated multiple endpoints to use `user_management` module methods:&#10;     - **`RequestPagingList`**: Updated from `partner_management.ModulePartnerManagement.Role` to `user_management.ModuleUserManagement.Role`.&#10;     - **`RequestListDownload`**: Updated similarly.&#10;     - **`RequestCreate`**: Switched from `partner_management_handler.RoleCreate` to `user_management.ModuleUserManagement.Role.RequestCreate`.&#10;     - **`RequestRead` and `RequestReadByNameId`**: Updated to use `user_management` methods.&#10;     - **`RoleEdit` and `RoleDelete`**: Updated endpoints to use methods from `user_management`.&#10;&#10;4. **Removed unused Role API fields:**&#10;   - Fields `area_code` and `task_type_id` deleted for role creation and editing requests.&#10;&#10;### AI Deducted:&#10;- Updates align the APIs with the newer `user_management` module, reflecting deprecation of `partner_management`.&#10;- Removal of unused fields simplifies request payloads, reducing unnecessary data exchange.&#10;&#10;### Overall Impact:&#10;- Refactored code to ensure uniformity with the updated `user_management` module.&#10;- Improved maintainability by removing obsolete imports and unused attributes.">
+      <option name="closed" value="true" />
+      <created>1753920816494</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1753920816494</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Update Go version to 1.24.5 in dxlib module" />
+    <MESSAGE value="- Update Go version in `go.mod` from 1.24.3 to 1.24.5.&#10;&#10;AI Deducted: Updated Go version likely addresses bug fixes, enhances security, or improves compatibility with other modules and dependencies." />
+    <MESSAGE value="**Commit Message:**&#10;&#10;Add new SQL scripts for push notification, task management, and general data operations&#10;&#10;**List of changes:**&#10;&#10;1. **Push Notification Schema and Tables:**&#10;   - Added schema `push_notification`.&#10;   - Created `fcm_application` table for managing application configurations for Firebase Cloud Messaging (FCM).&#10;   - Created `fcm_user_token` table to store user-specific FCM tokens and link them to applications.&#10;   - Created `fcm_message` table to manage individual push messages with retry and read status.&#10;   - Added a `v_fcm_message` view to join `fcm_message` with `fcm_user_token` for extended data access.&#10;&#10;   _AI Deducted: Push notifications needed a robust data structure to handle application configurations, user tokens, and message tracking._&#10;&#10;2. **CMS Dashboard Views for Partner Management:**&#10;   - Added materialized views (`mv_task_status_summary`, `mv_task_location_distribution`, `mv_task_time_series`, `mv_field_executor_status_time_series`, `mv_dashboard_time_series`) for aggregating task and executor statistics.&#10;   - Created unique indexes on materialized views for optimized access and deduplication.&#10;   - Added a `refresh_dashboard_views` function to refresh all the materialized views concurrently.&#10;   - Created triggers (`refresh_views_on_*`) to refresh the materialized views on changes in relevant tables (e.g., tasks, subtasks, customer data).&#10;&#10;   _AI Deducted: To support a CMS dashboard, data aggregation and caching were essential for improved analytical querying and performance._&#10;&#10;3. **General Schema and Configurations:**&#10;   - Created schema `general`.&#10;   - Added `general.property` table for storing system metadata (e.g., system name, version, and TTL values).&#10;   - Pre-populated system configuration properties (e.g., `SYSTEM-NAME`, `SYSTEM-VERSION`, and various TTL settings).&#10;   - Created `general.announcement` table for storing user-facing system announcements.&#10;   &#10;   _AI Deducted: This provides centralized storage for critical system-wide configurations and announcements._&#10;&#10;4. **Task Code Auto-generation:**&#10;   - Added `generate_task_code` function to auto-generate unique task codes based on task IDs.&#10;   - Created a trigger (`set_task_code`) for generating task codes during task inserts.&#10;&#10;   _AI Deducted: Auto-generating task codes reduces manual errors and enforces consistent task identification._&#10;&#10;5. **Initialization of Master Data:**&#10;   - Inserted data into `master_data.area` table to define operational regions and areas.&#10;   - Inserted data into `master_data.customer_ref` table to define customer segments and types.&#10;   - Inserted data into `master_data.global_lookup` table for commonly used reference types (e.g., `SKEMA_BAYAR`, `SATUAN`, and `STATUS_TASK`).&#10;   - Inserted data into `master_data.rs_customer_sector` table to define customer sector codes and descriptions.&#10;&#10;   _AI Deducted: Proper initialization of master data tables supports consistent data management and operational readiness._&#10;&#10;6. **PostgreSQL Extensions:**&#10;   - Enabled `pgcrypto` and `uuid-ossp` extensions for generating secure random values and UUIDs.&#10;&#10;   _AI Deducted: Extensions were necessary to facilitate UUID-based key generation and other cryptographic utilities._" />
+    <MESSAGE value="**Remove obsolete Dockerfiles for multi-arch service `pgn-partner-api-webadmin`**&#10;&#10;- Deleted `service-pgn-partner-api-webadmin-linux-amd64` Dockerfile.&#10;- Deleted `service-pgn-partner-api-webadmin-linux-arm64` Dockerfile.&#10;&#10;**AI Deducted:**&#10;The removed Dockerfiles were likely outdated or no longer needed due to service deprecation or migration to a different build strategy." />
+    <MESSAGE value="```&#10;Refactor database utility methods and improve query formatting&#10;&#10;- Simplified database identifier wrapping:&#10;  - Updated the `WrapIdentifier` method to use backticks for better readability and consistency.&#10;  - (AI Deducted: Ensures accurate SQL syntax and reduces possible errors in case-sensitive database names).&#10;&#10;- Optimized connection termination logic:&#10;  - Streamlined SQL queries for &quot;postgres,&quot; &quot;sqlserver,&quot; and &quot;oracle&quot; to eliminate redundant string concatenation.&#10;  - Consolidated multiline SQL into single-line queries.&#10;  - (AI Deducted: Enhances code maintainability and avoids potential formatting issues).&#10;&#10;- Improved database-dropping logic:&#10;  - Replaced duplicate code patterns in &quot;postgres&quot; and &quot;sqlserver&quot; block queries for clarity.&#10;  - Refactored Oracle-specific `DROP` logic for schema cleanup.&#10;  - (AI Deducted: Simplifies management of database objects and improves readability).&#10;&#10;- Enhanced error handling:&#10;  - Standardized error reporting with `errors.Errorf` over `errors.Wrap` (deprecated).&#10;  - Fixed incorrect `log` usage by correcting the `Log.Errorf` invocation.&#10;  - (AI Deducted: Aligns with modern practices and improves debugging clarity).&#10;&#10;- Streamlined database creation logic:&#10;  - Applied consistent SQL formatting across all supported drivers (&quot;postgres,&quot; &quot;sqlserver,&quot; and &quot;oracle&quot;).&#10;  - Simplified Oracle schema creation scripts by consolidating permission grants.&#10;  - (AI Deducted: Boosts compatibility and simplifies future modifications).&#10;```" />
+    <MESSAGE value="Update indirect dependencies in `go.mod` and `go.sum`&#10;&#10;- Bumped `github.com/klauspost/cpuid/v2` to v2.3.0 for the latest CPU-related optimizations and feature enhancements.  &#10;  - **AI Deducted:** Likely updated to utilize improved hardware-based optimizations or enhanced feature sets in the library.&#10;&#10;- Added new indirect dependencies:&#10;  - `github.com/kr/pretty v0.1.0` and `v0.3.1` for advanced object formatting and debugging purposes.&#10;  - `github.com/kr/pty v1.1.1` for handling pseudo-terminals (likely for improved CLI interactions or process management).&#10;  - `github.com/kr/text v0.1.0` for additional support in text processing and formatting operations.&#10;  - `gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15` for testing enhancements and compatibility with the existing testing suite.&#10;  - `google.golang.org/appengine v1.6.8` for App Engine compatibility updates. &#10;  - **AI Deducted:** New dependencies added likely to support enhanced error handling, testing, and runtime operations.&#10;&#10;- Updated `go.sum` to reflect changes in `go.mod` with hashed entries for dependency versions.&#10;&#10;**AI Deducted Reason for Changes:** These updates ensure the project remains aligned with the latest features, optimizations, and compatibility improvements across third-party libraries, enhancing maintainability and robustness." />
+    <MESSAGE value="Remove unused modules and handlers in arrears, construction, and upload data management&#10;&#10;Changes:&#10;1. **Deleted `arrears_management` module**:&#10;   - Removed `arrears_management.go`&#10;   - Eliminated multiple functions related to arrears task and row creation, update, and handling.&#10;&#10;2. **Deleted `arrears_management` handler**:&#10;   - Removed `arrears_management_handler_arrears.go`&#10;   - Eliminated functions handling arrears creation, retrieval by `task_uid`, and task cancellation.&#10;&#10;3. **Deleted `construction_management` module**:&#10;   - Removed `construction_management.go`&#10;   - Eliminated initialization and tables related to gas appliances and construction components.&#10;&#10;4. **Deleted `upload_data` handler and helpers**:&#10;   - Removed `customer_upload.go` and related upload utilities in `helpers.go`.&#10;   - Removed functionality for CSV/XLSX parsing and processing related to customer uploads.&#10;&#10;AI Deducted:&#10;- Codebase required cleanup of unused or redundant modules, handlers, and utilities to simplify the project structure.&#10;- These modules and handlers likely became obsolete due to new implementations or unutilized functionality.&#10;- Maintenance and scalability benefit from removing dead code for better project manageability and reduced technical debt." />
+    <MESSAGE value="**Commit: Remove Redundant Arrears, Construction, and Upload Data Management Features**&#10;&#10;- **Deleted `arrears_management` package**: Removed all related functionality, including task creation, arrears processing, status updates, and database interactions for arrears management tasks.&#10;- **Deleted `arrears_management_handler_arrears.go`**: Eliminated handlers for arrears operations such as `TaskPiutangCreate`, `TaskPiutangReadByTaskUid`, and task cancellation workflows.&#10;- **Deleted `construction_management` package**: Removed construction management module and associated table initialization for gas appliances, tapping saddle appliances, and more.&#10;- **Deleted `customer_upload.go` handler**: Removed functionality for customer data uploads, both for bulk base64 uploads and proximity-based customer lookup.&#10;- **Deleted `upload_data/helpers.go`**: Removed utility helpers for parsing and validating data uploads from CSV/XLSX files.&#10;&#10;**AI Deducted:**  &#10;The removed code appears unused, obsolete, or redundant, likely as part of a cleanup for unused features in the project. This may improve maintainability, reduce project complexity, and optimize system resource usage." />
+    <MESSAGE value="Refactor redundant code, enhance configuration management, and clean unused functionality&#10;&#10;### Changes:&#10;1. **Updated IDE Module Configuration:**&#10;   - Added exclusion folders for `.dart_tool`, `.pub`, and `build` directories in the module configuration.&#10;   - **AI Deducted:** Prevents indexing unnecessary build artifacts by the IDE.&#10;&#10;2. **Refactored Environment Configuration in `main.go`:**&#10;   - Renamed environment variables for clarity: `IS_PGN_PARTNER_RESET_DELETE_AND_CREATE_DB` to `IS_RESET_DELETE_AND_CREATE_DB` and `PGN_PARTNER_RESET_BYPASS_CONFIRMATION` to `RESET_BYPASS_CONFIRMATION`.&#10;   - Updated handling for database connectivity configurations, including renaming &quot;task-dispatcher&quot; references to &quot;db_base.&quot;&#10;   - **AI Deducted:** Ensures clearer, database-agnostic naming conventions for better maintainability and alignment with the new database structure.&#10;&#10;3. **Removed Redundant Legacy Code in `handler_self.go`:**&#10;   - Removed partnership-related code for `OrganizationExecutor`, `OrganizationSupervisor`, `FieldExecutor`, and `FieldSupervisor` components in `handler_self.go`.&#10;   - **AI Deducted:** Redundant operations and unused dependencies significantly impacted application performance and complexity.&#10;&#10;4. **Deleted Unused General Settings Handlers:**&#10;   - Removed `GeneralSettingsTaskConstructionUpdate` and `GeneralSettingsTaskConstructionRead` handlers.&#10;   - **AI Deducted:** Unused endpoints contribute no utility; removing them reduces potential maintenance overhead.&#10;&#10;5. **Streamlined Internal Module Initializations:**&#10;   - Updated initializations across several modules (e.g., Self, General, User Management, Push Notifications) to use `db_base` instead of `task-dispatcher`.&#10;   - **AI Deducted:** Aligns all module configurations with the new unified database structure for consistency.&#10;&#10;6. **Simplified Database References in the Base Module:**&#10;   - Removed multiple hardcoded settings/constants related to `task-dispatcher`, `field executor`, and `field supervisor`.&#10;   - **AI Deducted:** Eliminates unused configurations bound to outdated functionality.&#10;&#10;7. **Removed Obsolete Functions in `seed.go`:**&#10;   - Deleted `PopulateDataPartnerTaskDispatcherMasterDataLocation` and redundant privilege initialization for field executor roles.&#10;   - **AI Deducted:** Cleaning up obsolete role-based privileges prevents potential misuses.&#10;&#10;8. **Introduced Local Environment Configuration for Reset Tool:**&#10;   - Added `key.env` containing Vault configuration for secure token management.&#10;   - Added `run.env` to configure runtime environment (e.g., Vault address, bypass flag, New Relic).&#10;   - **AI Deducted:** Supports a more secure and manageable configuration process.&#10;&#10;### Overall Impact:&#10;- Improved performance by removing unused code and redundant operations.&#10;- Simplified database configurations and naming conventions for better clarity.&#10;- Enhanced modularity and maintainability." />
+    <MESSAGE value="### Commit Message:&#10;&#10;**Refactor PGN Partner to DXLib Migration and Cleanup Unused Code**&#10;&#10;### Changes:&#10;1. **Standardized Service Names Across Dockerfiles:**&#10;   - Updated `SERVICE_NAME` environment variable in multi-arch Dockerfiles to use `dxlib` naming convention.&#10;   - **AI Deducted:** Aligning service names with the new DXLib naming scheme ensures consistency and clarity.&#10;&#10;2. **Renamed Environment Variables in `main.go`:**&#10;   - Replaced debug environment variables (e.g., `SERVICE_PGN_PARTNER_PUSH_NOTIFICATION_DEBUG`) with `DXLIB_SYSTEM_SERVICE` equivalents.&#10;   - **AI Deducted:** Improved readability and adherence to the standard naming convention.&#10;&#10;3. **Updated Documentation (README):**&#10;   - Replaced service names in README files to use `dxlib` naming (e.g., `dxlib-system-service-api-webadmin`).&#10;   - **AI Deducted:** Documentation changes ensure alignment with new service names and prevent confusion.&#10;&#10;4. **Removed All Legacy RelyOn Endpoint Handlers:**&#10;   - Deleted handlers and endpoints related to RelyOn integration in `api.go`.&#10;   - **AI Deducted:** Obsolete functionality was removed to reduce maintenance workload and improve codebase hygiene.&#10;&#10;5. **Removed Redundant Role and Privilege Initialization in `seed.go`:**&#10;   - Cleaned up unnecessary privilege settings and outdated email template configurations.&#10;   - **AI Deducted:** Legacy privileges for removed features and modules were no longer relevant.&#10;&#10;6. **Streamlined Code by Removing Unused Variables:**&#10;   - Eliminated unnecessary local variables (e.g., `organizationIdOwner`) and unused inserts in the `seed.go`.&#10;   - **AI Deducted:** Reduced technical debt and improved overall code readability.&#10;&#10;7. **General Miscellaneous Cleanup:**&#10;   - Renamed interfaces and app strings in `main.go` to match DXLib standards.&#10;   - Simplified seed logic and configuration processes.&#10;&#10;### Overall Impact:&#10;- Migrated naming conventions from `PGN Partner` to `DXLib`.&#10;- Improved readability, maintainability, and alignment with project standards.&#10;- Streamlined functionality by removing unused or outdated code." />
+    <MESSAGE value="### Commit Message:&#10;&#10;**Refactor Database and Configuration Handling for DXLib System Tool Reset**&#10;&#10;### Changes:&#10;1. **Renamed Configurations from &quot;postgres&quot; to &quot;system&quot;:**&#10;   - Updated configuration structure to replace `postgres` references with `system` in `main.go`.&#10;   - Adjusted sensitive keys to reference `system.user_name` and `system.user_password`.&#10;   - **AI Deducted:** Aligns naming conventions with the updated DXLib system standards for database context.&#10;&#10;2. **Refactored Database Connection Manager:**&#10;   - Replaced `dbPostgres` usage with `dbSystem`. &#10;   - Updated database initialization and reset logic to utilize the new `system` database context.&#10;   - **AI Deducted:** Provides consistency in database management and reflects the migration to new structural naming.&#10;&#10;3. **Updated Vault Configuration:**&#10;   - Changed default Vault variables to remove hardcoded tokens and paths for `VAULT_TOKEN` and `VAULT_PATH`.&#10;   - **AI Deducted:** Reinforces security by removing hardcoded values and enabling dynamic handling.&#10;&#10;4. **Renamed CLI Descriptions and Debug Flags:**&#10;   - Altered CLI application identifier and debug field from `pgn-partner-reset` to `tool-reset`.&#10;   - Updated program descriptions to match the new naming format (`Tool Reset CLI`).&#10;   - **AI Deducted:** Adapts CLI functionality to the new DXLib branding, ensuring seamless user transition.&#10;&#10;5. **Simplified Log Warnings and Error Outputs:**&#10;   - Adjusted warning messages and error handling to use the updated database context (e.g., `dbAuditLog` instead of `dbPartnerAuditLog`).&#10;   - **AI Deducted:** Improves log clarity and aligns terminology with refactored database references.&#10;&#10;### Overall Impact:&#10;- Improved maintainability by consolidating and updating database and configuration references.&#10;- Enhanced security through removal of hardcoded sensitive parameters.&#10;- Streamlined CLI application descriptions and logs to reflect the new DXLib branding." />
+    <MESSAGE value="**Refactor DXLib System Naming Conventions and Cleanup IDE Configurations**&#10;&#10;### Changes:&#10;1. **Updated System Name in SQL Property Table:**&#10;   - Changed the `SYSTEM-NAME` property from `PGN Partner Task Dispatcher` to `DXLib System Task Dispatcher` in `partner_taskdispatcher.general.sql`.&#10;   - **AI Deducted:** Aligns system naming with the rebranding to DXLib standards, ensuring consistency across configurations.&#10;&#10;2. **Cleaned Up IDE SQL Dialect Mappings:**&#10;   - Removed unused dialect mappings for `.linux-multi-arch` SQL files from `.idea/sqldialects.xml`.&#10;   - **AI Deducted:** Reduces clutter in IDE configuration by removing references to outdated SQL file paths, improving project maintainability.&#10;&#10;### Overall Impact:&#10;- Standardizes naming conventions for better alignment with the DXLib branding.&#10;- Improves project organization by cleaning up obsolete IDE configurations." />
+    <MESSAGE value="**Remove obsolete SQL scripts for audit logging, configuration, and legacy management tasks**&#10;&#10;### Changes:&#10;1. **Deleted `partner_auditlog.sql`:**&#10;   - Removed outdated audit logging schema and tables (e.g., `audit_log.error_log`, `audit_log.user_activity_log`).&#10;   - **AI Deducted:** These tables are no longer in use; their removal helps in database simplification and reduces storage overhead.&#10;&#10;2. **Deleted `partner_config.sql`:**&#10;   - Removed configuration schema and tables (`configuration.external_system`, `settings.general_template`, `settings.email_template`, `settings.sms_template`).&#10;   - **AI Deducted:** Unused configuration tables were likely replaced by more modern or consolidated solutions.&#10;&#10;3. **Deleted arrears management (`partner_taskdispatcher.arrears_management.sql`):**&#10;   - Dropped schemas, tables, and comments related to arrears task processing and uploads.&#10;   - **AI Deducted:** Legacy arrears management workflows are deprecated, making the functionality redundant.&#10;&#10;4. **Deleted construction management (`partner_taskdispatcher.construction_management.sql`):**&#10;   - Removed schemas, appliance-related tables (e.g., `gas_appliance`, `meter_appliance_type`), and inserts for initial data.&#10;   - **AI Deducted:** Construction management features are no longer required, likely due to shifting business requirements.&#10;&#10;5. **Deleted `partner_taskdispatcher.general.sql`:**&#10;   - Removed `general.property` and `general.announcement` tables, along with pre-populated configuration data.&#10;   - **AI Deducted:** Centralized configuration management has likely been migrated to a different system.&#10;&#10;6. **Deleted redundant master data initialization (`partner_taskdispatcher.master_data.init-data.sql`):**&#10;   - Dropped insertion scripts for operational area, customer references, and global lookup data.&#10;   - **AI Deducted:** Data initialization is either automated or included in a new streamlined system.&#10;&#10;### Overall Impact:&#10;- Simplified database structure by removing unused scripts and schemas.&#10;- Reduced maintenance burden and potential confusion from legacy SQL artifacts.&#10;- Improved focus on active and relevant system features." />
+    <MESSAGE value="**Remove obsolete `arrears_management` and `construction_management` modules**&#10;&#10;- **Deleted `arrears_management` package**: Removed all endpoints and methods for managing arrears, including `TaskPiutangCreate`, data validation functionality, and related middleware.&#10;  - **AI Deducted:** The module is no longer in use and its functionality is likely deprecated, simplifying the codebase.&#10;&#10;- **Deleted `construction_management` package**: Removed functionalities related to gas appliances, meter appliance types, and tapping saddle appliances, including endpoint definitions, request handlers, and middleware.&#10;  - **AI Deducted:** This module has been retired due to shifting business needs, and its removal reduces maintenance overhead.&#10;&#10;**Overall Impact:**&#10;- Simplified codebase by removing unused modules and endpoints.&#10;- Enhanced maintainability and clarity by focusing on active and relevant components." />
+    <MESSAGE value="**Replace `partner_management` with `user_management` modules across user and role APIs**&#10;&#10;### Changes:&#10;1. **Removed `partner_management` import:**&#10;   - Deleted references to `dxlib-system/common/infrastructure/partner_management`.&#10;&#10;2. **Replaced `partner_management` with `user_management` in User Role Membership API:**&#10;   - Updated `partner_management.ModulePartnerManagement.UserRoleMembership.RequestPagingList` to `user_management.ModuleUserManagement.UserRoleMembership.RequestPagingList`.&#10;&#10;3. **Replaced `partner_management` with `user_management` in Role API:**&#10;   - Updated multiple endpoints to use `user_management` module methods:&#10;     - **`RequestPagingList`**: Updated from `partner_management.ModulePartnerManagement.Role` to `user_management.ModuleUserManagement.Role`.&#10;     - **`RequestListDownload`**: Updated similarly.&#10;     - **`RequestCreate`**: Switched from `partner_management_handler.RoleCreate` to `user_management.ModuleUserManagement.Role.RequestCreate`.&#10;     - **`RequestRead` and `RequestReadByNameId`**: Updated to use `user_management` methods.&#10;     - **`RoleEdit` and `RoleDelete`**: Updated endpoints to use methods from `user_management`.&#10;&#10;4. **Removed unused Role API fields:**&#10;   - Fields `area_code` and `task_type_id` deleted for role creation and editing requests.&#10;&#10;### AI Deducted:&#10;- Updates align the APIs with the newer `user_management` module, reflecting deprecation of `partner_management`.&#10;- Removal of unused fields simplifies request payloads, reducing unnecessary data exchange.&#10;&#10;### Overall Impact:&#10;- Refactored code to ensure uniformity with the updated `user_management` module.&#10;- Improved maintainability by removing obsolete imports and unused attributes." />
+    <option name="LAST_COMMIT_MESSAGE" value="**Replace `partner_management` with `user_management` modules across user and role APIs**&#10;&#10;### Changes:&#10;1. **Removed `partner_management` import:**&#10;   - Deleted references to `dxlib-system/common/infrastructure/partner_management`.&#10;&#10;2. **Replaced `partner_management` with `user_management` in User Role Membership API:**&#10;   - Updated `partner_management.ModulePartnerManagement.UserRoleMembership.RequestPagingList` to `user_management.ModuleUserManagement.UserRoleMembership.RequestPagingList`.&#10;&#10;3. **Replaced `partner_management` with `user_management` in Role API:**&#10;   - Updated multiple endpoints to use `user_management` module methods:&#10;     - **`RequestPagingList`**: Updated from `partner_management.ModulePartnerManagement.Role` to `user_management.ModuleUserManagement.Role`.&#10;     - **`RequestListDownload`**: Updated similarly.&#10;     - **`RequestCreate`**: Switched from `partner_management_handler.RoleCreate` to `user_management.ModuleUserManagement.Role.RequestCreate`.&#10;     - **`RequestRead` and `RequestReadByNameId`**: Updated to use `user_management` methods.&#10;     - **`RoleEdit` and `RoleDelete`**: Updated endpoints to use methods from `user_management`.&#10;&#10;4. **Removed unused Role API fields:**&#10;   - Fields `area_code` and `task_type_id` deleted for role creation and editing requests.&#10;&#10;### AI Deducted:&#10;- Updates align the APIs with the newer `user_management` module, reflecting deprecation of `partner_management`.&#10;- Removal of unused fields simplifies request payloads, reducing unnecessary data exchange.&#10;&#10;### Overall Impact:&#10;- Refactored code to ensure uniformity with the updated `user_management` module.&#10;- Improved maintainability by removing obsolete imports and unused attributes." />
+    <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

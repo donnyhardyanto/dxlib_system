@@ -5,7 +5,6 @@ import (
 	moduleInstanceV1AuditLog "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/audit_log"
 	moduleInstanceV1ExternalSystem "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/external_system"
 	moduleInstanceV1General "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/general"
-	moduleInstanceV1MasterData "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/master_data"
 	moduleInstanceV1PushNotification "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/push_notification"
 	moduleInstanceV1Self "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/self"
 	moduleInstanceV1UserManagement "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/user_management"
@@ -75,7 +74,6 @@ func doOnDefineAPIEndPoints() (err error) {
 	moduleInstanceV1UserManagement.DefineAPIEndPoints(apiWebadmin)
 	moduleInstanceV1ExternalSystem.DefineAPIEndPoints(apiWebadmin)
 	//moduleInstanceV1Webapp.DefineAPIEndPoints(apiWebadmin)
-	moduleInstanceV1MasterData.DefineAPIEndPoints(apiWebadmin)
 	moduleInstanceV1PushNotification.DefineAPIEndPoints(apiWebadmin)
 	return nil
 }
@@ -92,9 +90,9 @@ func main() {
 	}
 	app.App.InitVault = vault.NewHashiCorpVault(
 		os.GetEnvDefaultValue("VAULT_ADDRESS", "http://127.0.0.1:8200/"),
-		os.GetEnvDefaultValue("VAULT_TOKEN", "dev-vault-token"),
+		os.GetEnvDefaultValue("VAULT_TOKEN", ""),
 		"__VAULT__",
-		os.GetEnvDefaultValue("VAULT_PATH", "dev-vault-path"),
+		os.GetEnvDefaultValue("VAULT_PATH", ""),
 	)
 	app.Set("dxlib-system-service-api-webadmin",
 		"DXLib System API WebAdmin",

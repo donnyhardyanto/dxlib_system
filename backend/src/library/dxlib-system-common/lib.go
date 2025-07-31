@@ -8,14 +8,14 @@ import (
 	"github.com/donnyhardyanto/dxlib_module/module/user_management"
 )
 
-type Partner struct {
+type System struct {
 	DatabaseNameIdAuditLog       string
 	DatabaseNameIdTaskDispatcher string
 	DatabaseNameIdConfig         string
 	UserManagement               *user_management.DxmUserManagement
 }
 
-var PartnerInstance Partner
+var SystemInstance System
 
 func init() {
 	app.App.OnStartStorageReady = func() (err error) {
@@ -23,7 +23,7 @@ func init() {
 		return nil
 	}
 
-	PartnerInstance = Partner{
+	SystemInstance = System{
 		DatabaseNameIdAuditLog:       base.DatabaseNameIdAuditLog,
 		DatabaseNameIdTaskDispatcher: base.DatabaseNameIdDbBase,
 		DatabaseNameIdConfig:         base.DatabaseNameIdConfig,

@@ -6,7 +6,6 @@ import (
 	"github.com/donnyhardyanto/dxlib/utils/http"
 	"github.com/donnyhardyanto/dxlib_module/module/general"
 	"github.com/donnyhardyanto/dxlib_module/module/self"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure"
 )
 
 func DefineAPIEndPoints(anAPI *api.DXAPI) {
@@ -146,26 +145,5 @@ func DefineAPIEndPoints(anAPI *api.DXAPI) {
 			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
 			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
 		}, []string{"ANNOUNCEMENT.DOWNLOAD"}, 0, "default",
-	)
-
-	anAPI.NewEndPoint("GeneralSettings.Task.Construction.CMS",
-		"General settings",
-		"/v1/general/settings/task/construction/read", "POST", api.EndPointTypeHTTPJSON, http.ContentTypeApplicationJSON, nil,
-		infrastructure.GeneralSettingsTaskConstructionRead, nil, table.Manager.StandardOperationResponsePossibility["read"], []api.DXAPIEndPointExecuteFunc{
-			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
-			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
-		}, []string{"GENERAL_SETTINGS_TASK_CONSTRUCTION.READ"}, 0, "default",
-	)
-
-	anAPI.NewEndPoint("General.Settings.CMS",
-		"General settings",
-		"/v1/general/settings/task/construction/update", "POST", api.EndPointTypeHTTPJSON, http.ContentTypeApplicationJSON, []api.DXAPIEndPointParameter{
-			{NameId: "new", Type: "json", Description: "", IsMustExist: true, Children: []api.DXAPIEndPointParameter{
-				{NameId: "free_pipe_length_in_meter", Type: "float64zp", Description: "", IsMustExist: true},
-			},
-			}}, infrastructure.GeneralSettingsTaskConstructionUpdate, nil, table.Manager.StandardOperationResponsePossibility["read"], []api.DXAPIEndPointExecuteFunc{
-			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
-			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
-		}, []string{"GENERAL_SETTINGS_TASK_CONSTRUCTION.UPDATE"}, 0, "default",
 	)
 }

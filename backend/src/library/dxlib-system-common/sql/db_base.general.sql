@@ -21,7 +21,7 @@ create table general.property
 
 INSERT INTO general.property (nameid, type, value)
 VALUES ('SYSTEM-NAME', 'STRING', '{
-  "value": "PGN Partner Task Dispatcher"
+  "value": "DXLib System - Db Base"
 }'::JSONB),
        ('SYSTEM-VERSION', 'STRING', '{
          "value": "1.0.0"

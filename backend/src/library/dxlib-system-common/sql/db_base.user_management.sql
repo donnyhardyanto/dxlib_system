@@ -153,7 +153,7 @@ create table user_management.role
     id                           bigserial primary key,
     uid                          varchar(1024)            not null unique default CONCAT(
             to_hex((extract(epoch from now()) * 1000000)::bigint), gen_random_uuid()::text),
-    organization_types           JSON, -- - NULL: for universal role that can be applied to any organization type, OWNER, PARTNER, VENDOR, or array of string like ["PARTNER","VENDOR"]
+    organization_types           JSON, -- - NULL: for universal role that can be applied to any organization type, OWNER, tc or array of string like ["OWNER"]
     nameid                       varchar(255)             not null unique,
     name                         varchar(255)             not null,
     description                  varchar(255)             not null,

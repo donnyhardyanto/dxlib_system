@@ -6,7 +6,6 @@ import (
 	utilsHttp "github.com/donnyhardyanto/dxlib/utils/http"
 	"github.com/donnyhardyanto/dxlib_module/module/self"
 	"github.com/donnyhardyanto/dxlib_module/module/user_management"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/partner_management"
 )
 
 func defineAPIUserRoleMembership(anAPI *api.DXAPI) {
@@ -21,7 +20,7 @@ func defineAPIUserRoleMembership(anAPI *api.DXAPI) {
 			{NameId: "row_per_page", Type: "int64", Description: "", IsMustExist: true},
 			{NameId: "page_index", Type: "int64", Description: "", IsMustExist: true},
 			{NameId: "is_deleted", Type: "bool", Description: "", IsMustExist: false},
-		}, partner_management.ModulePartnerManagement.UserRoleMembership.RequestPagingList, nil, table.Manager.StandardOperationResponsePossibility["list"], []api.DXAPIEndPointExecuteFunc{
+		}, user_management.ModuleUserManagement.UserRoleMembership.RequestPagingList, nil, table.Manager.StandardOperationResponsePossibility["list"], []api.DXAPIEndPointExecuteFunc{
 			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
 			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
 		}, []string{"USER_ROLE_MEMBERSHIP.LIST"}, 0, "default",

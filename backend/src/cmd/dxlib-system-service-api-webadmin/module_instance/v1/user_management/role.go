@@ -5,8 +5,7 @@ import (
 	"github.com/donnyhardyanto/dxlib/table"
 	utilsHttp "github.com/donnyhardyanto/dxlib/utils/http"
 	"github.com/donnyhardyanto/dxlib_module/module/self"
-	"github.com/donnyhardyanto/dxlib-system/common/infrastructure/partner_management"
-	partner_management_handler "github.com/donnyhardyanto/dxlib-system/common/infrastructure/partner_management/handler"
+	"github.com/donnyhardyanto/dxlib_module/module/user_management"
 )
 
 func defineAPIRole(anAPI *api.DXAPI) {
@@ -20,7 +19,7 @@ func defineAPIRole(anAPI *api.DXAPI) {
 			{NameId: "filter_order_by", Type: "string", Description: "", IsMustExist: true},
 			{NameId: "filter_key_values", Type: "json-passthrough", Description: "", IsMustExist: true},
 			{NameId: "format", Type: "protected-string", Description: "", IsMustExist: true},
-		}, partner_management.ModulePartnerManagement.Role.RequestListDownload, nil, table.Manager.StandardOperationResponsePossibility["list"], []api.DXAPIEndPointExecuteFunc{
+		}, user_management.ModuleUserManagement.Role.RequestListDownload, nil, table.Manager.StandardOperationResponsePossibility["list"], []api.DXAPIEndPointExecuteFunc{
 			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
 			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
 		}, []string{"ROLE.LIST.DOWNLOAD"}, 0, "default",
@@ -37,7 +36,7 @@ func defineAPIRole(anAPI *api.DXAPI) {
 			{NameId: "row_per_page", Type: "int64", Description: "", IsMustExist: true},
 			{NameId: "page_index", Type: "int64", Description: "", IsMustExist: true},
 			{NameId: "is_deleted", Type: "bool", Description: "", IsMustExist: false},
-		}, partner_management.ModulePartnerManagement.Role.RequestPagingList, nil, table.Manager.StandardOperationResponsePossibility["list"], []api.DXAPIEndPointExecuteFunc{
+		}, user_management.ModuleUserManagement.Role.RequestPagingList, nil, table.Manager.StandardOperationResponsePossibility["list"], []api.DXAPIEndPointExecuteFunc{
 			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
 			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
 		}, []string{"ROLE.LIST"}, 0, "default",
@@ -51,9 +50,7 @@ func defineAPIRole(anAPI *api.DXAPI) {
 			{NameId: "nameid", Type: "string", Description: "Role nameId", IsMustExist: true},
 			{NameId: "name", Type: "string", Description: "Role name", IsMustExist: true},
 			{NameId: "description", Type: "string", Description: "Role description", IsMustExist: true},
-			{NameId: "area_code", Type: "string", Description: "Role area code", IsMustExist: false},
-			{NameId: "task_type_id", Type: "int64", Description: "Role task type id", IsMustExist: false},
-		}, partner_management_handler.RoleCreate, nil, nil, []api.DXAPIEndPointExecuteFunc{
+		}, user_management.ModuleUserManagement.Role.RequestCreate, nil, nil, []api.DXAPIEndPointExecuteFunc{
 			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
 			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
 		}, []string{"ROLE.CREATE"}, 0, "default",
@@ -65,7 +62,7 @@ func defineAPIRole(anAPI *api.DXAPI) {
 			"Essential for Role specification views and data verification.",
 		"/v1/role/read", "POST", api.EndPointTypeHTTPJSON, utilsHttp.ContentTypeApplicationJSON, []api.DXAPIEndPointParameter{
 			{NameId: "id", Type: "int64", Description: "", IsMustExist: true},
-		}, partner_management.ModulePartnerManagement.Role.RequestRead, nil, table.Manager.StandardOperationResponsePossibility["read"], []api.DXAPIEndPointExecuteFunc{
+		}, user_management.ModuleUserManagement.Role.RequestRead, nil, table.Manager.StandardOperationResponsePossibility["read"], []api.DXAPIEndPointExecuteFunc{
 			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
 			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
 		}, []string{"ROLE.READ"}, 0, "default",
@@ -77,7 +74,7 @@ func defineAPIRole(anAPI *api.DXAPI) {
 			"Essential for Role specification views and data verification.",
 		"/v1/role/read/nameid", "POST", api.EndPointTypeHTTPJSON, utilsHttp.ContentTypeApplicationJSON, []api.DXAPIEndPointParameter{
 			{NameId: "nameid", Type: "string", Description: "", IsMustExist: true},
-		}, partner_management.ModulePartnerManagement.Role.RequestReadByNameId, nil, table.Manager.StandardOperationResponsePossibility["read"], []api.DXAPIEndPointExecuteFunc{
+		}, user_management.ModuleUserManagement.Role.RequestReadByNameId, nil, table.Manager.StandardOperationResponsePossibility["read"], []api.DXAPIEndPointExecuteFunc{
 			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
 			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
 		}, []string{"ROLE.READ"}, 0, "default",
@@ -96,7 +93,7 @@ func defineAPIRole(anAPI *api.DXAPI) {
 				{NameId: "area_code", Type: "string", Description: "Role area code", IsMustExist: false},
 				{NameId: "task_type_id", Type: "int64", Description: "Role task type id", IsMustExist: false},
 			}},
-		}, partner_management_handler.RoleEdit, nil, table.Manager.StandardOperationResponsePossibility["edit"], []api.DXAPIEndPointExecuteFunc{
+		}, user_management.ModuleUserManagement.RoleEdit, nil, table.Manager.StandardOperationResponsePossibility["edit"], []api.DXAPIEndPointExecuteFunc{
 			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
 			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
 		}, []string{"ROLE.UPDATE"}, 0, "default",
@@ -108,7 +105,7 @@ func defineAPIRole(anAPI *api.DXAPI) {
 			"Returns confirmation of successful deletion operation.",
 		"/v1/role/delete", "POST", api.EndPointTypeHTTPJSON, utilsHttp.ContentTypeApplicationJSON, []api.DXAPIEndPointParameter{
 			{NameId: "id", Type: "int64", Description: "", IsMustExist: true},
-		}, partner_management_handler.RoleDelete, nil, table.Manager.StandardOperationResponsePossibility["delete"], []api.DXAPIEndPointExecuteFunc{
+		}, user_management.ModuleUserManagement.RoleDelete, nil, table.Manager.StandardOperationResponsePossibility["delete"], []api.DXAPIEndPointExecuteFunc{
 			self.ModuleSelf.MiddlewareRequestRateLimitCheck,
 			self.ModuleSelf.MiddlewareUserLoggedAndPrivilegeCheck,
 		}, []string{"ROLE.DELETE"}, 0, "default",

@@ -2,13 +2,10 @@ package main
 
 import (
 	moduleInstance "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance"
-	moduleInstanceV1ArrearsManagement "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/arrears_management"
 	moduleInstanceV1AuditLog "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/audit_log"
-	moduleInstanceV1ConstructionManagement "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/construction_management"
 	moduleInstanceV1ExternalSystem "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/external_system"
 	moduleInstanceV1General "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/general"
 	moduleInstanceV1MasterData "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/master_data"
-	moduleInstanceV1PartnerManagement "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/partner_management"
 	moduleInstanceV1PushNotification "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/push_notification"
 	moduleInstanceV1Self "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/self"
 	moduleInstanceV1UserManagement "github.com/donnyhardyanto/dxlib-system/service-api-webadmin/module_instance/v1/user_management"
@@ -72,19 +69,6 @@ func doOnDefineAPIEndPoints() (err error) {
 		"/version", "GET", api.EndPointTypeHTTPJSON, http.ContentTypeApplicationJSON, nil,
 		moduleInstance.VersionHandler, nil, nil, nil, nil, 0, "default",
 	)
-	/*	moduleInstanceAuditLog.DefineAPIEndPoints(apiWebadmin)
-		moduleInstanceSelf.DefineAPIEndPoints(apiWebadmin)
-		moduleInstanceGeneral.DefineAPIEndPoints(apiWebadmin)
-		moduleInstanceUserManagement.DefineAPIEndPoints(apiWebadmin)
-		moduleInstanceExternalSystem.DefineAPIEndPoints(apiWebadmin)
-		//moduleInstanceWebapp.DefineAPIEndPoints(apiWebadmin)
-		moduleInstanceMasterData.DefineAPIEndPoints(apiWebadmin)
-		moduleInstancePartnerManagement.DefineAPIEndPoints(apiWebadmin)
-		moduleInstanceTaskManagement.DefineAPIEndPoints(apiWebadmin)
-		moduleInstanceConstructionManagement.DefineAPIEndPoints(apiWebadmin)
-		moduleInstancePushNotification.DefineAPIEndPoints(apiWebadmin)
-		moduleInstanceRelyOn.DefineAPIEndPoints(apiWebadmin)*/
-
 	moduleInstanceV1AuditLog.DefineAPIEndPoints(apiWebadmin)
 	moduleInstanceV1Self.DefineAPIEndPoints(apiWebadmin)
 	moduleInstanceV1General.DefineAPIEndPoints(apiWebadmin)
@@ -92,14 +76,7 @@ func doOnDefineAPIEndPoints() (err error) {
 	moduleInstanceV1ExternalSystem.DefineAPIEndPoints(apiWebadmin)
 	//moduleInstanceV1Webapp.DefineAPIEndPoints(apiWebadmin)
 	moduleInstanceV1MasterData.DefineAPIEndPoints(apiWebadmin)
-	moduleInstanceV1PartnerManagement.DefineAPIEndPoints(apiWebadmin)
-	moduleInstanceV1TaskManagement.DefineAPIEndPoints(apiWebadmin)
-	moduleInstanceV1ConstructionManagement.DefineAPIEndPoints(apiWebadmin)
 	moduleInstanceV1PushNotification.DefineAPIEndPoints(apiWebadmin)
-	moduleInstanceV1RelyOn.DefineAPIEndPoints(apiWebadmin)
-	moduleInstanceV1ArrearsManagement.DefineAPIEndPoints(apiWebadmin)
-	moduleInstanceV1UploadData.DefineAPIEndPoints(apiWebadmin)
-
 	return nil
 }
 

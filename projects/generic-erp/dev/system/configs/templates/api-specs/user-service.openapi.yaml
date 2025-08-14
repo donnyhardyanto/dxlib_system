@@ -1,0 +1,284 @@
+openapi: 3.0.3
+info:
+  title: User Service API
+  description: Manages user accounts, profiles, and authentication
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: api-support@company.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3001/api/v1
+    description: Development server
+  - url: https://user-service.staging.yourdomain.com/api/v1
+    description: Staging server
+  - url: https://user-service.yourdomain.com/api/v1
+    description: Production server
+
+paths:
+  /users:
+    get:
+      summary: List users
+      description: Retrieve a paginated list of users
+      operationId: getUsers
+      tags:
+        - Users
+      parameters:
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    post:
+      summary: Create user
+      description: Create a new user account
+      operationId: createUser
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/{userId}:
+    get:
+      summary: Get user by ID
+      description: Retrieve a specific user by their ID
+      operationId: getUserById
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    put:
+      summary: Update user
+      description: Update an existing user
+      operationId: updateUser
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      summary: Delete user
+      description: Delete a user account
+      operationId: deleteUser
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: User deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /health:
+    get:
+      summary: Health check
+      description: Check if the service is healthy
+      operationId: healthCheck
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  timestamp:
+                    type: string
+                    format: date-time
+                  dependencies:
+                    type: object
+                    properties:
+                      database:
+                        type: string
+                        example: "connected"
+                      redis:
+                        type: string
+                        example: "connected"
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - email
+        - firstName
+        - lastName
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique user identifier
+        email:
+          type: string
+          format: email
+          description: User's email address
+        firstName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          description: User's first name
+        lastName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          description: User's last name
+        phoneNumber:
+          type: string
+          pattern: '^[+]?[1-9][\d\s\-\(\)]{6,15}
+
+### secrets/dev.env
+  ```bash
+  # Development Environment Secrets
+  # DO NOT COMMIT TO VERSION CONTROL
+  
+  # Database Credentials
+  USER_DB_USERNAME=dev_user
+  USER_DB_PASSWORD=dev_password_123
+  USER_DB_SSL_CERT=""
+  
+  AUTH_DB_USERNAME=auth_user
+  AUTH_DB_PASSWORD=auth_password_123
+  AUTH_DB_SSL_CERT=""
+  
+  NOTIFICATION_DB_USERNAME=notification_user
+  NOTIFICATION_DB_PASSWORD=notification_password_123
+  NOTIFICATION_DB_AUTH_SOURCE=admin
+  
+  # Redis Credentials
+  REDIS_SESSIONS_PASSWORD=""
+  REDIS_SESSIONS_AUTH_TOKEN=""
+  
+  REDIS_CACHE_PASSWORD=""
+  REDIS_CACHE_AUTH_TOKEN=""
+  
+  REDIS_QUEUE_PASSWORD=""
+  REDIS_QUEUE_AUTH_TOKEN=""
+  
+  # Gateway & API Secrets
+  GATEWAY_SSL_CERTIFICATE=""
+  GATEWAY_SSL_PRIVATE_KEY=""
+  GATEWAY_JWT_SECRET=dev_jwt_secret_key_12345
+  GATEWAY_API_KEYS=dev_api_key_12345,dev_admin_key_67890
+  
+  # External API Keys
+  STRIPE_SECRET_KEY=sk_test_dev_stripe_key
+  AWS_ACCESS_KEY_ID=dev_aws_access_key
+  AWS_SECRET_ACCESS_KEY=dev_aws_secret_key
+  SENDGRID_API_KEY=dev_sendgrid_key
+  
+  # Encryption Keys
+  ENCRYPTION_KEY=dev_encryption_key_32_chars
+  HMAC_SECRET=dev_hmac_secret_key

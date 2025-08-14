@@ -1,0 +1,121 @@
+# Production Environment Configuration
+environment: "production"
+
+# Scaling configuration for production (high availability - multiple instances)
+scaling:
+  user-service:
+    replicas: 3
+    instances:
+      - host: "user-service-1.prod.internal"
+        port: 3001
+      - host: "user-service-2.prod.internal"
+        port: 3001
+      - host: "user-service-3.prod.internal"
+        port: 3001
+    load_balancer: true
+    load_balancer_url: "user-service.prod.internal"
+    health_check_interval: "30s"
+
+  auth-service:
+    replicas: 3
+    instances:
+      - host: "auth-service-1.prod.internal"
+        port: 3002
+      - host: "auth-service-2.prod.internal"
+        port: 3002
+      - host: "auth-service-3.prod.internal"
+        port: 3002
+    load_balancer: true
+    load_balancer_url: "auth-service.prod.internal"
+    health_check_interval: "30s"
+
+  notification-service:
+    replicas: 2
+    instances:
+      - host: "notification-service-1.prod.internal"
+        port: 3003
+      - host: "notification-service-2.prod.internal"
+        port: 3003
+    load_balancer: true
+    load_balancer_url: "notification-service.prod.internal"
+    health_check_interval: "30s"
+
+# Host mappings for production (load balancer endpoints)
+hosts:
+  user-service: "user-service.prod.internal"
+  auth-service: "auth-service.prod.internal"
+  notification-service: "notification-service.prod.internal"
+  user-db: "postgres-primary.prod.internal"
+  auth-db: "postgres-auth.prod.internal"
+  notification-db: "mongo-notifications.prod.internal"
+  redis-sessions: "redis-sessions.prod.internal"
+  redis-cache: "redis-cache.prod.internal"
+  redis-queue: "redis-queue.prod.internal"
+  web-gateway: "api.yourdomain.com"
+
+# Service ports for production
+ports:
+  user-service: 3001
+  auth-service: 3002
+  notification-service: 3003
+  web-gateway: 443
+
+# Resource allocations for production (high)
+resources:
+  user-service:
+    cpu: "2"
+    memory: "2Gi"
+  auth-service:
+    cpu: "2"
+    memory: "2Gi"
+  notification-service:
+    cpu: "1"
+    memory: "1Gi"
+
+# Database configurations for production
+database:
+  user-db:
+    pool_size: 50
+    name: "users_production"
+  auth-db:
+    pool_size: 50
+    name: "auth_production"
+  notification-db:
+    pool_size: 30
+    name: "notifications_production"
+
+# Redis configurations for production
+redis:
+  sessions:
+    max_memory: "2gb"
+  cache:
+    max_memory: "4gb"
+  queue:
+    max_memory: "1gb"
+
+# Gateway configuration for production
+gateway:
+  ssl_enabled: true
+  domain: "api.yourdomain.com"
+
+# Firewall rules for production (very restrictive)
+firewall:
+  rules: ["allow-80", "allow-443", "deny-all-except-internal"]
+
+# Production-specific settings
+debug:
+  enabled: false
+  log_level: "error"
+
+features:
+  rate_limiting: true
+  monitoring: true
+
+# Production-only configurations
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM
+
+security:
+  encryption_at_rest: true
+  audit_logging: true

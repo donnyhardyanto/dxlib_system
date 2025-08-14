@@ -1,0 +1,96 @@
+# Development Environment Configuration
+environment: "development"
+
+# Scaling configuration for development (single instance per service)
+scaling:
+  user-service:
+    replicas: 1
+    instances:
+      - host: "localhost"
+        port: 3001
+    load_balancer: false
+
+  auth-service:
+    replicas: 1
+    instances:
+      - host: "localhost"
+        port: 3002
+    load_balancer: false
+
+  notification-service:
+    replicas: 1
+    instances:
+      - host: "localhost"
+        port: 3003
+    load_balancer: false
+
+# Host mappings for development (single hosts)
+hosts:
+  user-service: "localhost"
+  auth-service: "localhost"
+  notification-service: "localhost"
+  user-db: "localhost"
+  auth-db: "localhost"
+  notification-db: "localhost"
+  redis-sessions: "localhost"
+  redis-cache: "localhost"
+  redis-queue: "localhost"
+  web-gateway: "localhost"
+
+# Service ports for development
+ports:
+  user-service: 3001
+  auth-service: 3002
+  notification-service: 3003
+  web-gateway: 8080
+
+# Resource allocations for development (minimal)
+resources:
+  user-service:
+    cpu: "0.1"
+    memory: "128Mi"
+  auth-service:
+    cpu: "0.1"
+    memory: "128Mi"
+  notification-service:
+    cpu: "0.1"
+    memory: "128Mi"
+
+# Database configurations for development
+database:
+  user-db:
+    pool_size: 5
+    name: "users_dev"
+  auth-db:
+    pool_size: 5
+    name: "auth_dev"
+  notification-db:
+    pool_size: 5
+    name: "notifications_dev"
+
+# Redis configurations for development
+redis:
+  sessions:
+    max_memory: "64mb"
+  cache:
+    max_memory: "64mb"
+  queue:
+    max_memory: "64mb"
+
+# Gateway configuration for development
+gateway:
+  ssl_enabled: false
+  domain: "localhost:8080"
+
+# Firewall rules for development (permissive)
+firewall:
+  rules: ["allow-all-internal"]
+
+# Development-specific settings
+debug:
+  enabled: true
+  log_level: "debug"
+
+features:
+  rate_limiting: false
+  monitoring: false

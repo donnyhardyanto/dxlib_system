@@ -1,0 +1,147 @@
+# System Architecture Definition - Environment Agnostic
+openapi: 3.0.0
+info:
+  title: System Architecture Definition
+  version: "1.0.0"
+  description: Base architecture definition for all environments
+
+# Architecture definition (structure only, no environment-specific values)
+x-architecture:
+  services:
+    user-service:
+      type: "api-service"
+      protocol: "http"
+      health_check: "/health"
+      dependencies: ["user-db", "redis-sessions"]
+      scaling:
+        replicas: "{{scaling.user-service.replicas}}"
+        instances: "{{scaling.user-service.instances}}"
+        load_balancer: "{{scaling.user-service.load_balancer}}"
+      resources:
+        cpu: "{{resources.user-service.cpu}}"
+        memory: "{{resources.user-service.memory}}"
+
+    auth-service:
+      type: "api-service"
+      protocol: "https"
+      health_check: "/health"
+      dependencies: ["auth-db", "redis-cache"]
+      scaling:
+        replicas: "{{scaling.auth-service.replicas}}"
+        instances: "{{scaling.auth-service.instances}}"
+        load_balancer: "{{scaling.auth-service.load_balancer}}"
+      resources:
+        cpu: "{{resources.auth-service.cpu}}"
+        memory: "{{resources.auth-service.memory}}"
+
+    notification-service:
+      type: "api-service"
+      protocol: "http"
+      health_check: "/ping"
+      dependencies: ["notification-db", "redis-queue"]
+      scaling:
+        replicas: "{{scaling.notification-service.replicas}}"
+        instances: "{{scaling.notification-service.instances}}"
+        load_balancer: "{{scaling.notification-service.load_balancer}}"
+      resources:
+        cpu: "{{resources.notification-service.cpu}}"
+        memory: "{{resources.notification-service.memory}}"
+
+  databases:
+    user-db:
+      type: "postgresql"
+      port: 5432
+      host: "{{hosts.user-db}}"
+      database: "{{database.user-db.name}}"
+      connection_pool: "{{database.user-db.pool_size}}"
+      # Sensitive data from secrets
+      username: "{{secrets.user-db.username}}"
+      password: "{{secrets.user-db.password}}"
+      ssl_cert: "{{secrets.user-db.ssl_cert}}"
+
+    auth-db:
+      type: "postgresql"
+      port: 5432
+      host: "{{hosts.auth-db}}"
+      database: "{{database.auth-db.name}}"
+      connection_pool: "{{database.auth-db.pool_size}}"
+      # Sensitive data from secrets
+      username: "{{secrets.auth-db.username}}"
+      password: "{{secrets.auth-db.password}}"
+      ssl_cert: "{{secrets.auth-db.ssl_cert}}"
+
+    notification-db:
+      type: "mongodb"
+      port: 27017
+      host: "{{hosts.notification-db}}"
+      database: "{{database.notification-db.name}}"
+      connection_pool: "{{database.notification-db.pool_size}}"
+      # Sensitive data from secrets
+      username: "{{secrets.notification-db.username}}"
+      password: "{{secrets.notification-db.password}}"
+      auth_source: "{{secrets.notification-db.auth_source}}"
+
+  redis:
+    redis-sessions:
+      port: 6379
+      host: "{{hosts.redis-sessions}}"
+      purpose: "session-storage"
+      max_memory: "{{redis.sessions.max_memory}}"
+      # Sensitive data from secrets
+      password: "{{secrets.redis-sessions.password}}"
+      auth_token: "{{secrets.redis-sessions.auth_token}}"
+
+    redis-cache:
+      port: 6380
+      host: "{{hosts.redis-cache}}"
+      purpose: "application-cache"
+      max_memory: "{{redis.cache.max_memory}}"
+      # Sensitive data from secrets
+      password: "{{secrets.redis-cache.password}}"
+      auth_token: "{{secrets.redis-cache.auth_token}}"
+
+    redis-queue:
+      port: 6381
+      host: "{{hosts.redis-queue}}"
+      purpose: "background-jobs"
+      max_memory: "{{redis.queue.max_memory}}"
+      # Sensitive data from secrets
+      password: "{{secrets.redis-queue.password}}"
+      auth_token: "{{secrets.redis-queue.auth_token}}"
+
+  infrastructure:
+    web-gateway:
+      type: "gateway"
+      ports: [80, 443]
+      host: "{{hosts.web-gateway}}"
+      ssl_enabled: "{{gateway.ssl_enabled}}"
+      # Sensitive data from secrets
+      ssl_certificate: "{{secrets.gateway.ssl_certificate}}"
+      ssl_private_key: "{{secrets.gateway.ssl_private_key}}"
+      jwt_secret: "{{secrets.gateway.jwt_secret}}"
+      api_keys: "{{secrets.gateway.api_keys}}"
+
+    firewall:
+      type: "security"
+      rules: "{{firewall.rules}}"
+
+  clients:
+    web-admin:
+      type: "web-application"
+      technology: "vue.js"
+      gateway_route: "/admin"
+
+    mobile-app-user:
+      type: "mobile-application"
+      technology: "flutter"
+      platforms: ["ios", "android"]
+
+    mobile-app-driver:
+      type: "mobile-application"
+      technology: "flutter"
+      platforms: ["ios", "android"]
+
+    mobile-app-admin:
+      type: "mobile-application"
+      technology: "flutter"
+      platforms: ["ios", "android"]

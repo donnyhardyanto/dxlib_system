@@ -18,11 +18,305 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d32252b-d9ef-4ccd-996d-37c719a7560d" name="Changes" comment="**Replace `partner_management` with `user_management` modules across user and role APIs**&#10;&#10;### Changes:&#10;1. **Removed `partner_management` import:**&#10;   - Deleted references to `dxlib-system/common/infrastructure/partner_management`.&#10;&#10;2. **Replaced `partner_management` with `user_management` in User Role Membership API:**&#10;   - Updated `partner_management.ModulePartnerManagement.UserRoleMembership.RequestPagingList` to `user_management.ModuleUserManagement.UserRoleMembership.RequestPagingList`.&#10;&#10;3. **Replaced `partner_management` with `user_management` in Role API:**&#10;   - Updated multiple endpoints to use `user_management` module methods:&#10;     - **`RequestPagingList`**: Updated from `partner_management.ModulePartnerManagement.Role` to `user_management.ModuleUserManagement.Role`.&#10;     - **`RequestListDownload`**: Updated similarly.&#10;     - **`RequestCreate`**: Switched from `partner_management_handler.RoleCreate` to `user_management.ModuleUserManagement.Role.RequestCreate`.&#10;     - **`RequestRead` and `RequestReadByNameId`**: Updated to use `user_management` methods.&#10;     - **`RoleEdit` and `RoleDelete`**: Updated endpoints to use methods from `user_management`.&#10;&#10;4. **Removed unused Role API fields:**&#10;   - Fields `area_code` and `task_type_id` deleted for role creation and editing requests.&#10;&#10;### AI Deducted:&#10;- Updates align the APIs with the newer `user_management` module, reflecting deprecation of `partner_management`.&#10;- Removal of unused fields simplifies request payloads, reducing unnecessary data exchange.&#10;&#10;### Overall Impact:&#10;- Refactored code to ensure uniformity with the updated `user_management` module.&#10;- Improved maintainability by removing obsolete imports and unused attributes.">
-      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/lib.go" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/lib.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.general.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.general.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.user_management.init-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.user_management.init-data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.user_management.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.user_management.sql" afterDir="false" />
+    <list default="true" id="3d32252b-d9ef-4ccd-996d-37c719a7560d" name="Changes" comment="**Remove system service APIs for `master_data` module**&#10;&#10;### Changes:&#10;1. **Deleted `master_data` API package:**&#10;   - Removed the entire `master_data` module, including all its service endpoints for `Area`, `Location`, `CustomerRef`, and `GlobalLookup`.&#10;&#10;2. **Removed Endpoint Definitions:**&#10;   - Eliminated all endpoints related to `master_data`, such as:&#10;     - `Area.List`, `Area.Create`, `Area.Read`, `Area.Edit`, `Area.Delete`.&#10;     - `Location.List`, `Location.Create`, `Location.Read`, `Location.Edit`, `Location.Delete`.&#10;     - `CustomerRef.List`, `CustomerRef.Create`, `CustomerRef.Read`, `CustomerRef.Edit`, `CustomerRef.Delete`.&#10;     - `GlobalLookup.List`, `GlobalLookup.Create`, `GlobalLookup.Read`, `GlobalLookup.Edit`, `GlobalLookup.Delete`.&#10;&#10;3. **Removed Middleware and Managers Specific to `master_data`:**&#10;   - Deleted middleware methods for request validation, rate limits, and privilege checks for APIs within this module.&#10;&#10;### AI Deducted:&#10;- **Reason for Removal:** The `master_data` API module is likely deprecated or replaced with alternative implementations. Its removal simplifies the codebase, eliminates unused functionality, and reduces maintenance overhead.&#10;&#10;### Overall Impact:&#10;- The codebase is now leaner, focusing only on active and relevant modules.&#10;- Eliminating unused endpoints significantly improves maintainability and performance.">
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/.idea/dxlibv3.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/api/api.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/api/api_endpoint.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/api/api_endpoint_request.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/api/api_endpoint_request_get_parameter_value.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/api/api_endpoint_request_parameter_value.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/api/api_endpoint_request_proxy.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/api/field_format_check.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/api/oam/oam.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/app/app.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/auth/simple/simple.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/captcha/captcha.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/captcha/captcha.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/configuration/configuration.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/core.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/core/core.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/database.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/database_manager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/database_script.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/database_type/database_type.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/databasetx.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/protected/db/database_error_checker.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/protected/db/db.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/protected/dbtx/tx.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/protected/export/export.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/protected/sqlfile/sqlfile.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/protected/utils/utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database/sqlchecker/sqlchecker.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_delete.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_error_checker.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_insert.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_manager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_script.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_select.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_tx_delete.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_tx_insert.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_tx_select.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_tx_update.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_type/database_type.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/database_update.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/db/delete.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/db/insert.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/db/raw/raw_exec.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/db/raw/raw_query.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/db/select.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/db/update.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/db/utils/utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/export/export.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/sqlchecker/sqlchecker.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/utils/sql_expression/sql_expression.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/database2/utils/utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/endpoint_rate_limiter/endpoint_rate_limiter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/endpoint_rate_limiter/endpoint_rate_limiter_manager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/db_testing/build/local-oracle/run.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/db_testing/build/local-postgresql/run.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/db_testing/build/local-sqlserver/run.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/db_testing/src/cmd/test1/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/db_testing/src/sql/oracle/test1-ddl-2.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/db_testing/src/sql/postgresql/test1-ddl.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/db_testing/src/sql/sqlserver/test1-ddl.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/dxlibv3-dart/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/dxlibv3-dart/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/dxlibv3-dart/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/dxlibv3-dart/analysis_options.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/dxlibv3-dart/example/dxlibv3_dart_example.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/dxlibv3-dart/lib/dxlibv3_dart.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/dxlibv3-dart/lib/src/dxlibv3_dart_base.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/dxlibv3-dart/pubspec.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/examples/dxlibv3-dart/test/dxlibv3_dart_test.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-browser/dxlib-browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-browser/libs/tweetnacl/nacl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/dxlib-k6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/aes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/blowfish.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/cipher-core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/crypto-js.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/docs/QuickStartGuide.wiki" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/enc-base64.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/enc-base64url.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/enc-hex.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/enc-latin1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/enc-utf16.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/enc-utf8.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/evpkdf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/format-hex.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/format-openssl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/hmac-md5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/hmac-ripemd160.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/hmac-sha1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/hmac-sha224.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/hmac-sha256.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/hmac-sha3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/hmac-sha384.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/hmac-sha512.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/hmac.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/lib-typedarrays.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/md5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/mode-cfb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/mode-ctr-gladman.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/mode-ctr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/mode-ecb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/mode-ofb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/pad-ansix923.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/pad-iso10126.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/pad-iso97971.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/pad-nopadding.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/pad-pkcs7.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/pad-zeropadding.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/pbkdf2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/rabbit-legacy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/rabbit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/rc4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/ripemd160.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/sha1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/sha224.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/sha256.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/sha3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/sha384.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/sha512.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/tripledes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/crypto-js-4.2.0/x64-core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/js/dxlib-k6/libs/nacl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/log/log.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/messaging/fcm/fcm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/module/module.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/object_storage/minio/minio.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/object_storage/object_storage.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/redis/redis.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/remote_process/manager/manager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/sso/sso.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/state_diagram/state_diagram.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table/base_table.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table/property_table.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table/raw_table.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table/table.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table/table_manager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table2/base_table.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table2/base_table_delete.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table2/base_table_get.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table2/base_table_insert.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table2/base_table_select.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table2/base_table_update.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table2/property_table.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table2/raw_table.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table2/table.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/table2/table_manager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/task/task.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/testing/testing.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/time/time.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/type/type.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/crypto/aes/aes.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/crypto/datablock/datablock.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/crypto/x25519/x25519.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/http/client/client.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/http/http.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/json/json.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/jwt/jwt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/lv/lv.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/os/os.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/security/security.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/utils/utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/vault/vault.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib/websocket/client/client.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/.github/workflows/codeql.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/.idea/dxlib_module.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/core.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/lib/image_object_storage.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/audit_log/audit_log.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/external_system/external_system.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/general/general_announcement.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/general/general_property.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/module.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/oam/oam.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/push_notification/push_notification.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/self/self.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/user_management/user_management_base.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/user_management/user_management_organization.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/user_management/user_management_privilege.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/user_management/user_management_role.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/user_management/user_management_role_privilege.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/user_management/user_management_startup.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/user_management/user_management_user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/user_management/user_management_user_role_membership.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib_module/module/webapp/webapp.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/environments/dev/dev.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/environments/prod/prod.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/merged/dev/dev-final.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/secrets/dev/secrets-dev.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/secrets/staging/secret-staging.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/templates/api-specs/auth-service.openapi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/templates/api-specs/notification-service.openapi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/templates/api-specs/shared/common-schemas.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/templates/api-specs/shared/error-responses.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/templates/api-specs/shared/security-schemes.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/templates/api-specs/user-service.openapi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/templates/architecture.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dxlib-system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dxlib-system.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/local/dxlib-system-service-api-webadmin/key.env" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/build/local/dxlib-system-service-api-webadmin/key.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/local/dxlib-system-service-api-webadmin/run.env" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/build/local/dxlib-system-service-api-webadmin/run.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/local/dxlib-system-tool-reset/captcha.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/build/local/dxlib-system-tool-reset/captcha.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/local/dxlib-system-tool-reset/key.env" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/build/local/dxlib-system-tool-reset/key.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/local/dxlib-system-tool-reset/run.env" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/build/local/dxlib-system-tool-reset/run.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/local/dxlib-system-tool-reset/sql" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/build/local/dxlib-system-tool-reset/sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-runner/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-runner/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-runner/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-runner/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/captcha.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/captcha.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/dockerfiles/linux-multi-arch/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/dockerfiles/linux-multi-arch/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/dockerfiles/linux-multi-arch/app/captcha.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/dockerfiles/linux-multi-arch/app/captcha.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/main_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/main_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/audit_log/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/audit_log/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/external_system/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/external_system/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/general/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/general/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/oam/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/oam/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/push_notification/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/push_notification/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/self/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/self/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/organization.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/organization.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/organization_roles.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/organization_roles.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/privilege.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/privilege.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/role.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/role_privilege.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/role_privilege.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/test_upload_download_file.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/test_upload_download_file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/user_role_membership.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/v1/user_management/user_role_membership.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/version.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/module_instance/version.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-api-webadmin/pertamina-logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-api-webadmin/pertamina-logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-push-notification/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-push-notification/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-push-notification/dockerfiles/linux-multi-arch/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-push-notification/dockerfiles/linux-multi-arch/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-push-notification/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-push-notification/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-push-notification/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-push-notification/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-service-push-notification/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-service-push-notification/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-tool-reset/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app/sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/windows-multi-arch/app/sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-tool-reset/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-tool-reset/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-tool-reset/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/seed/seed.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/cmd/dxlib-system-tool-reset/seed/seed.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/assets/images/pertamina-logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/assets/images/pertamina-logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/infrastructure/base/base.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/infrastructure/base/base.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/infrastructure/configuration_settings/configuration_settings.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/infrastructure/configuration_settings/configuration_settings.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/infrastructure/define_configuration.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/infrastructure/define_configuration.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/infrastructure/handle_general_settings.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/infrastructure/handle_general_settings.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/infrastructure/handler_audit_log.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/infrastructure/handler_audit_log.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/infrastructure/handler_self.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/infrastructure/handler_self.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/infrastructure/internal.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/infrastructure/internal.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/infrastructure/user_management/handler/user_management_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/infrastructure/user_management/handler/user_management_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/infrastructure/user_management/handler/user_management_handler_user_identity_card.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/infrastructure/user_management/handler/user_management_handler_user_identity_card.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/lib.go" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/lib.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/data/partner_taskdispatcher.master_data.location.depdagri/districts.csv" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/sql/data/partner_taskdispatcher.master_data.location.depdagri/districts.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/data/partner_taskdispatcher.master_data.location.depdagri/provinces.csv" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/sql/data/partner_taskdispatcher.master_data.location.depdagri/provinces.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/data/partner_taskdispatcher.master_data.location.depdagri/regencies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/sql/data/partner_taskdispatcher.master_data.location.depdagri/regencies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/data/partner_taskdispatcher.master_data.location.depdagri/villages.csv" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/sql/data/partner_taskdispatcher.master_data.location.depdagri/villages.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_auditlog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/sql/db_auditlog.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.general.sql" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/sql/db_base.general.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.push_notification.sql" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/sql/db_base.push_notification.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.user_management.init-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/sql/db_base.user_management.init-data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_base.user_management.sql" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/sql/db_base.user_management.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib-system-common/sql/db_configuration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/products/backend/src/library/dxlib-system-common/sql/db_configuration.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/library/dxlib_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.work" beforeDir="false" afterPath="$PROJECT_DIR$/go.work" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +348,18 @@
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;donnyhardyanto&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/donnyhardyanto/dxlib-system.git&quot;,
+    &quot;accountId&quot;: &quot;4b519265-d31f-49d0-8b44-4bdc20c18080&quot;
+  }
+}</component>
   <component name="GoVcsConfiguration">
     <option name="GO_FMT" value="false" />
   </component>
@@ -76,52 +382,56 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "Go Build.(local) tool-reset.executor": "Debug",
-    "Go Build.tool-reset.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.GoLinterPluginOnboarding": "true",
-    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/donnyhardyanto/Works/Personal/dxlib-system/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go Build.(local) service-api-webadmin.executor&quot;: &quot;Debug&quot;,
+    &quot;Go Build.(local) tool-reset.executor&quot;: &quot;Debug&quot;,
+    &quot;Go Build.tool-reset.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.GoLinterPluginOnboarding&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.GoLinterPluginStorageMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/donnyhardyanto&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/build/local/dxlib-system-service-api-webadmin" />
       <recent name="$PROJECT_DIR$/backend/src/cmd/dxlib-system-tool-reset/dockerfiles/linux-multi-arch/app" />
       <recent name="$PROJECT_DIR$/backend/build/local" />
       <recent name="$PROJECT_DIR$/backend/build/local/dxlib-system-tool-reset" />
       <recent name="$PROJECT_DIR$/backend/src/cmd" />
-      <recent name="$PROJECT_DIR$/backend/src/library" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/templates/api-specs" />
+      <recent name="$PROJECT_DIR$/products" />
+      <recent name="$PROJECT_DIR$/projects/generic-erp/dev/system/configs/templates" />
       <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/backend" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -135,7 +445,7 @@
     <configuration name="(local) service-api-webadmin" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="dxlib-system" />
       <working_directory value="$PROJECT_DIR$/backend/build/local/dxlib-system-service-api-webadmin/" />
-      <go_parameters value="-o $PROJECT_DIR$/backend/build/local/dxlib-system-service-api-webadmin/tool-reset" />
+      <go_parameters value="-o $PROJECT_DIR$/backend/build/local/dxlib-system-service-api-webadmin/dxlib-system-service-api-webadmin" />
       <envs>
         <env name="BUILD_ENV_FILE" value="$PROJECT_DIR$/backend/build/local/build.env" />
       </envs>
@@ -166,8 +476,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-gosdk-3b128438d3f6-07d2d2d66b1e-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-251.27812.54" />
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-GO-251.27812.54" />
+        <option value="bundled-gosdk-f466f9b0953e-3d2cccfc42a2-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-252.23892.449" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-GO-252.23892.449" />
       </set>
     </attachedChunks>
   </component>
@@ -235,7 +545,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753920816494</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="**Remove system service APIs for `master_data` module**&#10;&#10;### Changes:&#10;1. **Deleted `master_data` API package:**&#10;   - Removed the entire `master_data` module, including all its service endpoints for `Area`, `Location`, `CustomerRef`, and `GlobalLookup`.&#10;&#10;2. **Removed Endpoint Definitions:**&#10;   - Eliminated all endpoints related to `master_data`, such as:&#10;     - `Area.List`, `Area.Create`, `Area.Read`, `Area.Edit`, `Area.Delete`.&#10;     - `Location.List`, `Location.Create`, `Location.Read`, `Location.Edit`, `Location.Delete`.&#10;     - `CustomerRef.List`, `CustomerRef.Create`, `CustomerRef.Read`, `CustomerRef.Edit`, `CustomerRef.Delete`.&#10;     - `GlobalLookup.List`, `GlobalLookup.Create`, `GlobalLookup.Read`, `GlobalLookup.Edit`, `GlobalLookup.Delete`.&#10;&#10;3. **Removed Middleware and Managers Specific to `master_data`:**&#10;   - Deleted middleware methods for request validation, rate limits, and privilege checks for APIs within this module.&#10;&#10;### AI Deducted:&#10;- **Reason for Removal:** The `master_data` API module is likely deprecated or replaced with alternative implementations. Its removal simplifies the codebase, eliminates unused functionality, and reduces maintenance overhead.&#10;&#10;### Overall Impact:&#10;- The codebase is now leaner, focusing only on active and relevant modules.&#10;- Eliminating unused endpoints significantly improves maintainability and performance.">
+      <option name="closed" value="true" />
+      <created>1753930161870</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1753930161870</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +588,8 @@
     <MESSAGE value="**Remove obsolete SQL scripts for audit logging, configuration, and legacy management tasks**&#10;&#10;### Changes:&#10;1. **Deleted `partner_auditlog.sql`:**&#10;   - Removed outdated audit logging schema and tables (e.g., `audit_log.error_log`, `audit_log.user_activity_log`).&#10;   - **AI Deducted:** These tables are no longer in use; their removal helps in database simplification and reduces storage overhead.&#10;&#10;2. **Deleted `partner_config.sql`:**&#10;   - Removed configuration schema and tables (`configuration.external_system`, `settings.general_template`, `settings.email_template`, `settings.sms_template`).&#10;   - **AI Deducted:** Unused configuration tables were likely replaced by more modern or consolidated solutions.&#10;&#10;3. **Deleted arrears management (`partner_taskdispatcher.arrears_management.sql`):**&#10;   - Dropped schemas, tables, and comments related to arrears task processing and uploads.&#10;   - **AI Deducted:** Legacy arrears management workflows are deprecated, making the functionality redundant.&#10;&#10;4. **Deleted construction management (`partner_taskdispatcher.construction_management.sql`):**&#10;   - Removed schemas, appliance-related tables (e.g., `gas_appliance`, `meter_appliance_type`), and inserts for initial data.&#10;   - **AI Deducted:** Construction management features are no longer required, likely due to shifting business requirements.&#10;&#10;5. **Deleted `partner_taskdispatcher.general.sql`:**&#10;   - Removed `general.property` and `general.announcement` tables, along with pre-populated configuration data.&#10;   - **AI Deducted:** Centralized configuration management has likely been migrated to a different system.&#10;&#10;6. **Deleted redundant master data initialization (`partner_taskdispatcher.master_data.init-data.sql`):**&#10;   - Dropped insertion scripts for operational area, customer references, and global lookup data.&#10;   - **AI Deducted:** Data initialization is either automated or included in a new streamlined system.&#10;&#10;### Overall Impact:&#10;- Simplified database structure by removing unused scripts and schemas.&#10;- Reduced maintenance burden and potential confusion from legacy SQL artifacts.&#10;- Improved focus on active and relevant system features." />
     <MESSAGE value="**Remove obsolete `arrears_management` and `construction_management` modules**&#10;&#10;- **Deleted `arrears_management` package**: Removed all endpoints and methods for managing arrears, including `TaskPiutangCreate`, data validation functionality, and related middleware.&#10;  - **AI Deducted:** The module is no longer in use and its functionality is likely deprecated, simplifying the codebase.&#10;&#10;- **Deleted `construction_management` package**: Removed functionalities related to gas appliances, meter appliance types, and tapping saddle appliances, including endpoint definitions, request handlers, and middleware.&#10;  - **AI Deducted:** This module has been retired due to shifting business needs, and its removal reduces maintenance overhead.&#10;&#10;**Overall Impact:**&#10;- Simplified codebase by removing unused modules and endpoints.&#10;- Enhanced maintainability and clarity by focusing on active and relevant components." />
     <MESSAGE value="**Replace `partner_management` with `user_management` modules across user and role APIs**&#10;&#10;### Changes:&#10;1. **Removed `partner_management` import:**&#10;   - Deleted references to `dxlib-system/common/infrastructure/partner_management`.&#10;&#10;2. **Replaced `partner_management` with `user_management` in User Role Membership API:**&#10;   - Updated `partner_management.ModulePartnerManagement.UserRoleMembership.RequestPagingList` to `user_management.ModuleUserManagement.UserRoleMembership.RequestPagingList`.&#10;&#10;3. **Replaced `partner_management` with `user_management` in Role API:**&#10;   - Updated multiple endpoints to use `user_management` module methods:&#10;     - **`RequestPagingList`**: Updated from `partner_management.ModulePartnerManagement.Role` to `user_management.ModuleUserManagement.Role`.&#10;     - **`RequestListDownload`**: Updated similarly.&#10;     - **`RequestCreate`**: Switched from `partner_management_handler.RoleCreate` to `user_management.ModuleUserManagement.Role.RequestCreate`.&#10;     - **`RequestRead` and `RequestReadByNameId`**: Updated to use `user_management` methods.&#10;     - **`RoleEdit` and `RoleDelete`**: Updated endpoints to use methods from `user_management`.&#10;&#10;4. **Removed unused Role API fields:**&#10;   - Fields `area_code` and `task_type_id` deleted for role creation and editing requests.&#10;&#10;### AI Deducted:&#10;- Updates align the APIs with the newer `user_management` module, reflecting deprecation of `partner_management`.&#10;- Removal of unused fields simplifies request payloads, reducing unnecessary data exchange.&#10;&#10;### Overall Impact:&#10;- Refactored code to ensure uniformity with the updated `user_management` module.&#10;- Improved maintainability by removing obsolete imports and unused attributes." />
-    <option name="LAST_COMMIT_MESSAGE" value="**Replace `partner_management` with `user_management` modules across user and role APIs**&#10;&#10;### Changes:&#10;1. **Removed `partner_management` import:**&#10;   - Deleted references to `dxlib-system/common/infrastructure/partner_management`.&#10;&#10;2. **Replaced `partner_management` with `user_management` in User Role Membership API:**&#10;   - Updated `partner_management.ModulePartnerManagement.UserRoleMembership.RequestPagingList` to `user_management.ModuleUserManagement.UserRoleMembership.RequestPagingList`.&#10;&#10;3. **Replaced `partner_management` with `user_management` in Role API:**&#10;   - Updated multiple endpoints to use `user_management` module methods:&#10;     - **`RequestPagingList`**: Updated from `partner_management.ModulePartnerManagement.Role` to `user_management.ModuleUserManagement.Role`.&#10;     - **`RequestListDownload`**: Updated similarly.&#10;     - **`RequestCreate`**: Switched from `partner_management_handler.RoleCreate` to `user_management.ModuleUserManagement.Role.RequestCreate`.&#10;     - **`RequestRead` and `RequestReadByNameId`**: Updated to use `user_management` methods.&#10;     - **`RoleEdit` and `RoleDelete`**: Updated endpoints to use methods from `user_management`.&#10;&#10;4. **Removed unused Role API fields:**&#10;   - Fields `area_code` and `task_type_id` deleted for role creation and editing requests.&#10;&#10;### AI Deducted:&#10;- Updates align the APIs with the newer `user_management` module, reflecting deprecation of `partner_management`.&#10;- Removal of unused fields simplifies request payloads, reducing unnecessary data exchange.&#10;&#10;### Overall Impact:&#10;- Refactored code to ensure uniformity with the updated `user_management` module.&#10;- Improved maintainability by removing obsolete imports and unused attributes." />
+    <MESSAGE value="**Remove system service APIs for `master_data` module**&#10;&#10;### Changes:&#10;1. **Deleted `master_data` API package:**&#10;   - Removed the entire `master_data` module, including all its service endpoints for `Area`, `Location`, `CustomerRef`, and `GlobalLookup`.&#10;&#10;2. **Removed Endpoint Definitions:**&#10;   - Eliminated all endpoints related to `master_data`, such as:&#10;     - `Area.List`, `Area.Create`, `Area.Read`, `Area.Edit`, `Area.Delete`.&#10;     - `Location.List`, `Location.Create`, `Location.Read`, `Location.Edit`, `Location.Delete`.&#10;     - `CustomerRef.List`, `CustomerRef.Create`, `CustomerRef.Read`, `CustomerRef.Edit`, `CustomerRef.Delete`.&#10;     - `GlobalLookup.List`, `GlobalLookup.Create`, `GlobalLookup.Read`, `GlobalLookup.Edit`, `GlobalLookup.Delete`.&#10;&#10;3. **Removed Middleware and Managers Specific to `master_data`:**&#10;   - Deleted middleware methods for request validation, rate limits, and privilege checks for APIs within this module.&#10;&#10;### AI Deducted:&#10;- **Reason for Removal:** The `master_data` API module is likely deprecated or replaced with alternative implementations. Its removal simplifies the codebase, eliminates unused functionality, and reduces maintenance overhead.&#10;&#10;### Overall Impact:&#10;- The codebase is now leaner, focusing only on active and relevant modules.&#10;- Eliminating unused endpoints significantly improves maintainability and performance." />
+    <option name="LAST_COMMIT_MESSAGE" value="**Remove system service APIs for `master_data` module**&#10;&#10;### Changes:&#10;1. **Deleted `master_data` API package:**&#10;   - Removed the entire `master_data` module, including all its service endpoints for `Area`, `Location`, `CustomerRef`, and `GlobalLookup`.&#10;&#10;2. **Removed Endpoint Definitions:**&#10;   - Eliminated all endpoints related to `master_data`, such as:&#10;     - `Area.List`, `Area.Create`, `Area.Read`, `Area.Edit`, `Area.Delete`.&#10;     - `Location.List`, `Location.Create`, `Location.Read`, `Location.Edit`, `Location.Delete`.&#10;     - `CustomerRef.List`, `CustomerRef.Create`, `CustomerRef.Read`, `CustomerRef.Edit`, `CustomerRef.Delete`.&#10;     - `GlobalLookup.List`, `GlobalLookup.Create`, `GlobalLookup.Read`, `GlobalLookup.Edit`, `GlobalLookup.Delete`.&#10;&#10;3. **Removed Middleware and Managers Specific to `master_data`:**&#10;   - Deleted middleware methods for request validation, rate limits, and privilege checks for APIs within this module.&#10;&#10;### AI Deducted:&#10;- **Reason for Removal:** The `master_data` API module is likely deprecated or replaced with alternative implementations. Its removal simplifies the codebase, eliminates unused functionality, and reduces maintenance overhead.&#10;&#10;### Overall Impact:&#10;- The codebase is now leaner, focusing only on active and relevant modules.&#10;- Eliminating unused endpoints significantly improves maintainability and performance." />
     <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
   <component name="VgoProject">
